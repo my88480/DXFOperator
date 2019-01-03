@@ -54,7 +54,7 @@ Easy to use:
 		myFileDXF.AddArc(0,0,90,0,90);
 		myFileDXF.AddArc(0,0,0,90,0,90);
 		myFileDXF.AddText(0,0,8,"Test");
-		myFileDXF.AddText(0,0,0,8,"Test");
+		myFileDXF.AddText(0,0,0,8,"Test\r\nline 2");
 		
 		double[][] mypoints = {{0,0},{5,5},{10,8}};		
 		myFileDXF.AddPolyline(mypoints);
