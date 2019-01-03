@@ -62,3 +62,5 @@ Easy to use:
 		
 
 		myFileDXF.DXF_WRITER();
+
+Then create one DXF file: loft_output_2019_01_03_08_39_06_0.dxf
