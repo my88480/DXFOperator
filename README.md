@@ -39,6 +39,7 @@ wPoint2D</br>
 wPoint2DTest</br>
 wPointTest</br>
 
+Easy to use:
 		FileDXF myFileDXF = new FileDXF();
 		
 		myFileDXF.AddPoint(2,2);
