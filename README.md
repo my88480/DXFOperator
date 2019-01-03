@@ -65,5 +65,5 @@ Easy to use:
 
 Then create one DXF file: loft_output_2019_01_03_08_39_06_0.dxf
 
-*@author David Wu<809758521@qq.com>
+*@author David Wu<809758521@qq.com></br>
 *@version 0.5
