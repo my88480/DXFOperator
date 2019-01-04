@@ -1,7 +1,7 @@
 # DXFOperator
 This Project is to write AutoCAD DXF file  without AutoCAD environment.It is my first java exercise.</br>
 
-It services for enterprise designing, such as lofting, nesting .....</br>
+It services for enterprise designing tasks, such as lofting, nesting .....</br>
 
 Main File: FileDXF.java</br>
            FileDXFTest.java
