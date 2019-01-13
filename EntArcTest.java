@@ -33,6 +33,17 @@ public class EntArcTest{
         for (int i  =  0; i < dxf_str.size(); i++) {
             System.out.println(dxf_str.get(i)); 
         }
+		
+		wPoint2D	Po = new wPoint2D(0.0,0.0);
+		wPoint2D	Pa = new wPoint2D(263.36975126607098,2.3957480654137759);
+		wPoint2D	Pb = new wPoint2D(2.1626945149204699,263.37176812099699);
+		
+		EntArc myarc2 = new EntArc(Po,Pa,Pb);
+		myarc2.PrintAll();
+		
+		for (double a=-1.0;a<=1.0;a=a+0.1){
+			System.out.println("a=" + a + "  angle=" + Math.acos(a)*180.0/Math.PI);
+		}
     }
 
 }

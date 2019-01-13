@@ -75,9 +75,25 @@ public class EntArc extends EntBase {
      * @param x_value -x of the arc's center point;
      * @param y_value -y of the arc's center point;
      * @param radius_value -radius of the arc;
+     * @param start_angle - start angle of the arc;
+     * @param end_angle - end angle of the arc;
      */
     public EntArc(double x_value,double y_value,double radius_value,double start_angle,double end_angle) {
         this.center_point = new wPoint(x_value,y_value);
+		this.radius = radius_value;
+		this.startAngle = start_angle;
+		this.endAngle = end_angle;
+    }
+
+    /**
+     * Constructor (wPoint2D cPoint,double radius_value,double start_angle,double end_angle)
+     * @param cPoint - center point of the arc;
+     * @param radius_value -radius of the arc;
+     * @param start_angle - start angle of the arc;
+     * @param end_angle - end angle of the arc;
+     */
+    public EntArc(wPoint2D cPoint,double radius_value,double start_angle,double end_angle) {
+        this.center_point = new wPoint(cPoint);
 		this.radius = radius_value;
 		this.startAngle = start_angle;
 		this.endAngle = end_angle;
@@ -89,10 +105,53 @@ public class EntArc extends EntBase {
      * @param y_value -y of the arc's center point;
      * @param z_value -z of the arc's center point;
      * @param radius_value -radius of the arc;
+     * @param start_angle - start angle of the arc;
+     * @param end_angle - end angle of the arc;
      */
     public EntArc(double x_value,double y_value,double z_value,double radius_value,double start_angle,double end_angle) {
         this.center_point = new wPoint(x_value,y_value,z_value);
 		this.radius = radius_value;
+		this.startAngle = start_angle;
+		this.endAngle = end_angle;
+    }
+
+    /**
+     * Constructor (wPoint cPoint,double radius_value,double start_angle,double end_angle)
+     * @param cPoint - center point of the arc;
+     * @param radius_value -radius of the arc;
+     * @param start_angle - start angle of the arc;
+     * @param end_angle - end angle of the arc;
+     */
+    public EntArc(wPoint cPoint,double radius_value,double start_angle,double end_angle) {
+        this.center_point = cPoint;
+		this.radius = radius_value;
+		this.startAngle = start_angle;
+		this.endAngle = end_angle;
+    }
+
+    /**
+     * Constructor (Po,Pa,Pb)
+     * @param Po - Center point of the Arc;
+     * @param Pa - Start point of the Arc;
+     * @param Pb - End point of the Arc;
+     */
+    public EntArc(wPoint2D Po,wPoint2D Pa,wPoint2D Pb) {
+        double radis,start_angle,end_angle;
+		double rb;
+		
+		radius = Math.sqrt(Math.pow(Pa.x-Po.x,2) + Math.pow(Pa.y-Po.y,2));
+		rb  = Math.sqrt(Math.pow(Pa.x-Po.x,2) + Math.pow(Pa.y-Po.y,2));
+		
+		if (Math.abs(rb-radius) > 0.2){
+			System.out.println("Invalid input. delta radius=" + Math.abs(rb-radius));
+		}
+		
+		start_angle = Math.toDegrees(Math.atan2((Pa.y - Po.y) , (Pa.x - Po.x)));
+		
+		end_angle = Math.toDegrees(Math.atan2((Pb.y - Po.y) , (Pb.x - Po.x)));
+		
+		this.center_point = new wPoint(Po.x,Po.y,0.0);
+		this.radius = radius;
 		this.startAngle = start_angle;
 		this.endAngle = end_angle;
     }
@@ -110,6 +169,20 @@ public class EntArc extends EntBase {
         this.xExtrusionDirection = one_arc.xExtrusionDirection;
         this.yExtrusionDirection = one_arc.yExtrusionDirection;
         this.zExtrusionDirection = one_arc.zExtrusionDirection;
+    }
+
+    /**
+     * MakeStartAngleSmaller (myArc)
+     * @param myArc - One Arc to make the startAngle smaller than the end_angle;
+    */
+    public void MakeStartAngleSmaller(EntArc myArc) {
+		
+		if (myArc.startAngle > myArc.endAngle){
+			double angle;
+			angle = myArc.startAngle;
+			myArc.startAngle = myArc.endAngle;
+			myArc.endAngle = angle;
+		}
     }
 
     /**

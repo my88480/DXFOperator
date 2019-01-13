@@ -31,6 +31,10 @@ public class FileDXFTest{
 		myFileDXF.AddPolyline(mypoints);
 		*/
 		
+		//Add the combined entities,From now restructure to the file FileDXF_ComplexTest
+		//myFileDXF.AddRectangle(200,150);
+		//myFileDXF.AddSector(new wPoint2D(50,25),50,45,90);
+		
 		//myFileDXF.secEntities.entities = new  ArrayList<Object>();
 
 		EntPolyline myPolyline = new EntPolyline();

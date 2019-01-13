@@ -11,42 +11,47 @@ public class wPoint{
     /**
      * code  10,20,30 -Point location (in WCS).
      */
-	public double x=0.0;
-	public double y=0.0;
-	public double z=0.0;
+	public double x = 0.0;
+	public double y = 0.0;
+	public double z = 0.0;
 
 	
 	public wPoint(){
-		x=0.0;
-		y=0.0;
-		z=0.0;
+		x = 0.0;
+		y = 0.0;
+		z = 0.0;
 	}
 	
 	public wPoint(double x_value){
-		x=x_value;
-		y=0.0;
-		z=0.0;
+		x = x_value;
+		y = 0.0;
+		z = 0.0;
 	}
 	
 	public wPoint(double x_value,double y_value){
-		x=x_value;
-		y=y_value;
-		z=0.0;
+		x = x_value;
+		y = y_value;
+		z = 0.0;
 	}
 	
 	public wPoint(double x_value,double y_value,double z_value){
-		x=x_value;
-		y=y_value;
-		z=z_value;
+		x = x_value;
+		y = y_value;
+		z = z_value;
+	}
+	
+	public wPoint(wPoint2D point){
+		x = point.x;
+		y = point.y;
 	}
 	
     /**
      * Constructor by a object of Class wPoint.Or called wPoint Copier.
      */
 	public wPoint(wPoint onepoint){
-		this.x=onepoint.x;
-		this.y=onepoint.y;
-		this.z=onepoint.z;
+		this.x = onepoint.x;
+		this.y = onepoint.y;
+		this.z = onepoint.z;
 	}
 	
     /**

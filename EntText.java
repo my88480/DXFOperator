@@ -177,10 +177,25 @@ public class EntText extends EntBase{
 	}
 	
     /**
+     * Constructor (bPoint,height_value,str)
+     * @param bPoint - insert point of the text
+     * @param height_value - the height of the text
+     * @param str -content of the text
+     */
+	public EntText(wPoint2D bPoint,double height_value,String str){
+		this.base_point = new wPoint(bPoint);
+		this.second_point = new wPoint();
+		this.height = height_value;
+		this.text = str;
+	}
+	
+    /**
      * Constructor (x_value,y_value,z_value,height_value,str)
      * @param x_value
      * @param y_value
      * @param z_value
+     * @param height_value - the height of the text
+     * @param str -content of the text
      */
 	public EntText(double x_value,double y_value,double z_value,double height_value,String str){
 		this.base_point = new wPoint(x_value,y_value,z_value);
@@ -189,6 +204,19 @@ public class EntText extends EntBase{
 		this.text = str;
 	}
 
+    /**
+     * Constructor (bPoint,height_value,str)
+     * @param bPoint - insert point of the text
+     * @param height_value - the height of the text
+     * @param str -content of the text
+     */
+	public EntText(wPoint bPoint,double height_value,String str){
+		this.base_point = bPoint;
+		this.second_point = new wPoint();
+		this.height = height_value;
+		this.text = str;
+	}
+	
     /**
      * Constructor (Class EntText)
      * @param onetext

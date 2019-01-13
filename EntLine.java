@@ -94,6 +94,26 @@ public class EntLine extends EntBase {
         z = z_value;
         */
     }
+	
+    /**
+     * Constructor (sPoint,ePoint)
+     * @sPoint -x of start point;
+     * @pePoint -y of start point;
+     */
+    public EntLine(wPoint2D sPoint,wPoint2D ePoint) {
+        start_point = new wPoint(sPoint.x,sPoint.y,0.0);
+        end_point = new wPoint(ePoint.x,ePoint.y,0.0);
+    }
+
+    /**
+     * Constructor (sPoint,ePoint)
+     * @sPoint -x of start point;
+     * @pePoint -y of start point;
+     */
+    public EntLine(wPoint sPoint,wPoint ePoint) {
+        start_point = new wPoint(sPoint);
+        end_point = new wPoint(ePoint);
+    }
 
     /**
      * Constructor (one_line)

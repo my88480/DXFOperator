@@ -87,16 +87,16 @@ public class FileDXF{
     }
 
     /**
-     * Constructor (one_dxf_file)
-     * @param one_dxf_file -one DXF File;
+     * Constructor (dxf_file)
+     * @param dxf_file -one DXF File;
      */
-    public FileDXF(FileDXF one_dxf_file) {
-		this.secHeader = one_dxf_file.secHeader;
-		this.secClasses = one_dxf_file.secClasses;
-		this.secTables = one_dxf_file.secTables;
-		this.secBlocks = one_dxf_file.secBlocks;
-		this.secEntities = one_dxf_file.secEntities;
-		this.secObjects = one_dxf_file.secObjects;
+    public FileDXF(FileDXF dxf_file) {
+		this.secHeader = dxf_file.secHeader;
+		this.secClasses = dxf_file.secClasses;
+		this.secTables = dxf_file.secTables;
+		this.secBlocks = dxf_file.secBlocks;
+		this.secEntities = dxf_file.secEntities;
+		this.secObjects = dxf_file.secObjects;
     }
 
     /**
@@ -108,6 +108,16 @@ public class FileDXF{
     */
     public void AddPoint(double x_value,double y_value) {
         this.secEntities.entities.add(new EntPoint(x_value,y_value));
+    }
+	
+	/**
+     * AddPoint(point)
+     * <pre>Add one Point into the Entities' Section
+     * @param point - 2D point;
+ 	 *	</pre>
+    */
+    public void AddPoint(wPoint2D point) {
+        this.secEntities.entities.add(point);
     }
 	
     /**
@@ -122,6 +132,16 @@ public class FileDXF{
         this.secEntities.entities.add(new EntPoint(x_value,y_value,z_value));
     }
 	
+	/**
+     * AddPoint(point)
+     * <pre>Add one Point into the Entities' Section
+     * @param point - 3D point;
+ 	 *	</pre>
+    */
+    public void AddPoint(wPoint point) {
+        this.secEntities.entities.add(point);
+    }
+	
     /**
      * AddLine(xs_value,ys_value,xe_value,ye_value)
      * <pre>Add one line into the Entities' Section
@@ -133,6 +153,17 @@ public class FileDXF{
     */
     public void AddLine(double xs_value,double ys_value,double xe_value,double ye_value) {
         this.secEntities.entities.add(new EntLine(xs_value,ys_value,xe_value,ye_value));
+    }
+	
+    /**
+     * AddLine(sPoint,ePoint)
+     * <pre>Add one line into the Entities' Section
+     * @param sPoint - Start point of the line;
+     * @param ePoint - End point of the line;
+ 	 *	</pre>
+    */
+    public void AddLine(wPoint2D sPoint,wPoint2D ePoint) {
+        this.secEntities.entities.add(new EntLine(sPoint,ePoint));
     }
 	
     /**
@@ -151,8 +182,19 @@ public class FileDXF{
     }
 
     /**
+     * AddLine(sPoint,ePoint)
+     * <pre>Add one line into the Entities' Section
+     * @param sPoint - Start point of the line;
+     * @param ePoint - End point of the line;
+ 	 *	</pre>
+    */
+    public void AddLine(wPoint sPoint,wPoint ePoint) {
+        this.secEntities.entities.add(new EntLine(sPoint,ePoint));
+    }
+	
+    /**
      * AddCircle(x_value,y_value,radius)
-     * <pre>Add one Point into the Entities' Section
+     * <pre>Add one Circle into the Entities' Section
      * @param x_value - Axis X;
      * @param y_value - Axis Y;
      * @param radius - radius;
@@ -163,8 +205,19 @@ public class FileDXF{
     }
 	
     /**
+     * AddCircle(cPoint,radius)
+     * <pre>Add one Circle into the Entities' Section
+     * @param cPoint - enter point of the circle;
+     * @param radius - radius;
+ 	 *	</pre>
+    */
+    public void AddCircle(wPoint2D cPoint,double radius) {
+        this.secEntities.entities.add(new EntCircle(cPoint,radius));
+    }
+	
+    /**
      * AddCircle(x_value,y_value,z_value, radius)
-     * <pre>Add one Point into the Entities' Section
+     * <pre>Add one Circle into the Entities' Section
      * @param x_value - Axis X;
      * @param y_value - Axis Y;
      * @param z_value - Axis Z;
@@ -176,8 +229,19 @@ public class FileDXF{
     }
 
     /**
-     * AddArc(x_value,y_value,radius)
-     * <pre>Add one Point into the Entities' Section
+     * AddCircle(cPoint,radius)
+     * <pre>Add one Circle into the Entities' Section
+     * @param cPoint - enter point of the circle;
+     * @param radius - radius;
+ 	 *	</pre>
+    */
+    public void AddCircle(wPoint cPoint,double radius) {
+        this.secEntities.entities.add(new EntCircle(cPoint,radius));
+    }
+	
+    /**
+     * AddArc(x_value,y_value,radius,start_angle,end_angle)
+     * <pre>Add one arc into the Entities' Section
      * @param x_value - Axis X;
      * @param y_value - Axis Y;
      * @param radius - radius;
@@ -190,8 +254,21 @@ public class FileDXF{
     }
 	
     /**
-     * AddArc(x_value,y_value,z_value, radius)
-     * <pre>Add one Point into the Entities' Section
+     * AddArc(cPoint,,radius,start_angle,end_angle)
+     * <pre>Add one arc into the Entities' Section
+     * @param cPoint - Center point of the arc;
+     * @param radius - radius;
+     * @param start_angle - start_angle;
+     * @param end_angle - end_angle;
+ 	 *	</pre>
+    */
+    public void AddArc(wPoint2D cPoint,double radius,double start_angle,double end_angle) {
+        this.secEntities.entities.add(new EntArc(cPoint,radius,start_angle,end_angle));
+    }
+	
+    /**
+     * AddArc(x_value,y_value,z_value, radius,start_angle,end_angle)
+     * <pre>Add one arc into the Entities' Section
      * @param x_value - Axis X;
      * @param y_value - Axis Y;
      * @param z_value - Axis Z;
@@ -205,8 +282,21 @@ public class FileDXF{
     }
 
     /**
+     * AddArc(cPoint,,radius,start_angle,end_angle)
+     * <pre>Add one arc into the Entities' Section
+     * @param cPoint - Center point of the arc;
+     * @param radius - radius;
+     * @param start_angle - start_angle;
+     * @param end_angle - end_angle;
+ 	 *	</pre>
+    */
+    public void AddArc(wPoint cPoint,double radius,double start_angle,double end_angle) {
+        this.secEntities.entities.add(new EntArc(cPoint,radius,start_angle,end_angle));
+    }
+	
+    /**
      * AddText(x_value,y_value,height_value,str))
-     * <pre>Add one Point into the Entities' Section
+     * <pre>Add one Text into the Entities' Section
      * @param x_value - Axis X;
      * @param y_value - Axis Y;
      * @param height_value - font's height;
@@ -218,8 +308,20 @@ public class FileDXF{
     }
 
     /**
+     * AddText(bPoint,height_value,str))
+     * <pre>Add one Text into the Entities' Section
+     * @param bPoint - insert point of the text;
+     * @param height_value - font's height;
+     * @param str - TEXT's string;
+ 	 *	</pre>
+    */
+    public void AddText(wPoint2D bPoint,double height_value,String str) {
+        this.secEntities.entities.add(new EntText(bPoint,height_value,str));
+    }
+
+    /**
      * AddText(x_value,y_value,z_value,height_value,str)
-     * <pre>Add one Point into the Entities' Section
+     * <pre>Add one Text into the Entities' Section
      * @param x_value - Axis X;
      * @param y_value - Axis Y;
      * @param z_value - Axis Z;
@@ -232,8 +334,20 @@ public class FileDXF{
     }
 
     /**
+     * AddText(bPoint,height_value,str))
+     * <pre>Add one Text into the Entities' Section
+     * @param bPoint - insert point of the text;
+     * @param height_value - font's height;
+     * @param str - TEXT's string;
+ 	 *	</pre>
+    */
+    public void AddText(wPoint bPoint,double height_value,String str) {
+        this.secEntities.entities.add(new EntText(bPoint,height_value,str));
+    }
+
+    /**
      * AddPolyline(points)
-     * <pre>Add one Point into the Entities' Section
+     * <pre>Add one Polyline into the Entities' Section
      * @param points - two dimensions array of double, x - points[i][0], y - points[i][1];
  	 *	</pre>
     */

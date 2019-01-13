@@ -81,6 +81,26 @@ public class EntCircle extends EntBase {
     }
 
     /**
+     * Constructor (wPoint2D cPoint,double radius_value)
+     * @param cPoint -  center point of the circle;
+    * @param radius_value -radius of the circle;
+     */
+    public EntCircle(wPoint2D cPoint,double radius_value) {
+        this.center_point = new wPoint(cPoint.x,cPoint.y);
+		this.radius = radius_value;
+    }
+
+     /**
+     * Constructor (wPoint cPoint,double radius_value)
+     * @param cPoint -  center point of the circle;
+    * @param radius_value -radius of the circle;
+     */
+    public EntCircle(wPoint cPoint,double radius_value) {
+        this.center_point = cPoint;
+		this.radius = radius_value;
+    }
+
+    /**
      * Constructor (one_circle)
      * @param one_circle -one object derived from class EntCircle;
      */

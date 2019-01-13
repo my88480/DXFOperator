@@ -109,7 +109,28 @@ public class EntPoint extends EntBase{
 	}
 
     /**
-     * Constructor (Class wPoint)
+     * Constructor (onepoint)
+     * @param onepoint
+     */
+	public EntPoint(wPoint2D onepoint){
+		base_point = new wPoint();
+
+		this.base_point.x = onepoint.x;
+		this.base_point.y = onepoint.y;
+	}
+	
+    /**
+     * Constructor (onepoint)
+     * @param onepoint
+     */
+	public EntPoint(wPoint onepoint){
+		base_point = new wPoint();
+
+		this.base_point = onepoint;
+	}
+	
+    /**
+     * Constructor (EntPoint)
      * @param onepoint
      */
 	public EntPoint(EntPoint onepoint){

@@ -1,12 +1,6 @@
 //package www
 //AutoCAD Section--ENTITIES
 import java.util.*;
-//import java.lang.Object;
-
-//import java.util.stream.Collectors;
-//import static java.util.stream.Collectors.*;
-//import static java.util.stream.Collectors.joining;
-
 
 /**
 *@author David Wu<809758521@qq.com>
@@ -68,20 +62,37 @@ public class SecEntities{
 	 * </pre>	 
      */
     public void PrintAll() {
-        
-		/*
-        System.out.println("Entity Type: LINE");
-        System.out.println("ClassLabel: "+this.ClassLabel);
-        System.out.println("SubClassLabel: "+this.SubClassLabel);
-
-        start_point.PrintAll();
-        end_point.PrintAll();
-
-        System.out.println("thickness = "+this.thickness);
-        System.out.println("xExtrusionDirection = "+this.xExtrusionDirection);
-        System.out.println("yExtrusionDirection = "+this.yExtrusionDirection);
-        System.out.println("zExtrusionDirection = "+this.zExtrusionDirection);
-		*/
+ 		for (int i  =  0; i < this.entities.size(); i++) {
+			Object myEntity=this.entities.get(i);
+			if (myEntity instanceof EntLine) {
+				EntLine myLine= (EntLine) myEntity;
+				myLine.PrintAll();
+			}
+			else if (myEntity instanceof EntPolyline){
+				EntPolyline myPolyline = (EntPolyline) myEntity;
+				myPolyline.PrintAll();
+			}
+			else if (myEntity instanceof EntPoint){
+				EntPoint myPoint = (EntPoint) myEntity;
+				myPoint.PrintAll();
+			}
+			else if (myEntity instanceof EntCircle){
+				EntCircle myCircle = (EntCircle) myEntity;
+				myCircle.PrintAll();
+			}
+			else if (myEntity instanceof EntArc){
+				EntArc myArc = (EntArc) myEntity;
+				myArc.PrintAll();
+			}
+			else if (myEntity instanceof EntText){
+				EntText myText = (EntText) myEntity;
+				myText.PrintAll();
+			}
+			else if (myEntity instanceof EntVertex){
+				EntVertex myVertex = (EntVertex) myEntity;
+				myVertex.PrintAll();
+			}
+        }		       
     }
 
     /**
@@ -97,32 +108,32 @@ public class SecEntities{
 		params.add(new String[] {"  2",this.SectionName});
 
 		for (int i  =  0; i < this.entities.size(); i++) {
-			Object myentity=this.entities.get(i);
-			if (myentity instanceof EntLine) {
-				EntLine myline= (EntLine) myentity;
-				params.addAll(myline.GetPairData());
+			Object myEntity=this.entities.get(i);
+			if (myEntity instanceof EntLine) {
+				EntLine myLine= (EntLine) myEntity;
+				params.addAll(myLine.GetPairData());
 			}
-			else if (myentity instanceof EntPolyline){
-				EntPolyline mypolyline = (EntPolyline) myentity;
-				params.addAll(mypolyline.GetPairData());
+			else if (myEntity instanceof EntPolyline){
+				EntPolyline myPolyline = (EntPolyline) myEntity;
+				params.addAll(myPolyline.GetPairData());
 			}
-			else if (myentity instanceof EntPoint){
-				EntPoint mypoint = (EntPoint) myentity;
-				params.addAll(mypoint.GetPairData());
+			else if (myEntity instanceof EntPoint){
+				EntPoint myPoint = (EntPoint) myEntity;
+				params.addAll(myPoint.GetPairData());
 			}
-			else if (myentity instanceof EntCircle){
-				EntCircle mycircle = (EntCircle) myentity;
-				params.addAll(mycircle.GetPairData());
+			else if (myEntity instanceof EntCircle){
+				EntCircle myCircle = (EntCircle) myEntity;
+				params.addAll(myCircle.GetPairData());
 			}
-			else if (myentity instanceof EntArc){
-				EntArc myarc = (EntArc) myentity;
-				params.addAll(myarc.GetPairData());
+			else if (myEntity instanceof EntArc){
+				EntArc myArc = (EntArc) myEntity;
+				params.addAll(myArc.GetPairData());
 			}
-			else if (myentity instanceof EntText){
-				EntText mytext = (EntText) myentity;
-				params.addAll(mytext.GetPairData());
+			else if (myEntity instanceof EntText){
+				EntText myText = (EntText) myEntity;
+				params.addAll(myText.GetPairData());
 			}
-			else if (myentity instanceof EntVertex){
+			else if (myEntity instanceof EntVertex){
 			}
         }		
 		
@@ -147,38 +158,34 @@ public class SecEntities{
         DXF_STR.add(this.SectionName);
 
 		for (int i  =  0; i < this.entities.size(); i++) {
-			//System.out.println(this.entities.get(i));
-			Object myentity=this.entities.get(i);
-			if (myentity instanceof EntLine) {
-				//System.out.println("I caought a line.Bingo");
-				EntLine myline= (EntLine) myentity;
-				//myline.PrintAll();
-				//myline.GetDXFData();
-				DXF_STR.addAll(myline.GetDXFData());
+			Object myEntity=this.entities.get(i);
+			if (myEntity instanceof EntLine) {
+				EntLine myLine= (EntLine) myEntity;
+				DXF_STR.addAll(myLine.GetDXFData());
 			}
-			else if (myentity instanceof EntPolyline){
-				EntPolyline mypolyline = (EntPolyline) myentity;
-				DXF_STR.addAll(mypolyline.GetDXFData());
+			else if (myEntity instanceof EntPolyline){
+				EntPolyline myPolyline = (EntPolyline) myEntity;
+				DXF_STR.addAll(myPolyline.GetDXFData());
 			}
-			else if (myentity instanceof EntPoint){
-				EntPoint mypoint = (EntPoint) myentity;
-				DXF_STR.addAll(mypoint.GetDXFData());
+			else if (myEntity instanceof EntPoint){
+				EntPoint myPoint = (EntPoint) myEntity;
+				DXF_STR.addAll(myPoint.GetDXFData());
 			}
-			else if (myentity instanceof EntCircle){
-				EntCircle mycircle = (EntCircle) myentity;
-				DXF_STR.addAll(mycircle.GetDXFData());
+			else if (myEntity instanceof EntCircle){
+				EntCircle myCircle = (EntCircle) myEntity;
+				DXF_STR.addAll(myCircle.GetDXFData());
 			}
-			else if (myentity instanceof EntArc){
-				EntArc myarc = (EntArc) myentity;
-				DXF_STR.addAll(myarc.GetDXFData());
+			else if (myEntity instanceof EntArc){
+				EntArc myArc = (EntArc) myEntity;
+				DXF_STR.addAll(myArc.GetDXFData());
 			}
-			else if (myentity instanceof EntText){
-				EntText mytext = (EntText) myentity;
-				DXF_STR.addAll(mytext.GetDXFData());
+			else if (myEntity instanceof EntText){
+				EntText myText = (EntText) myEntity;
+				DXF_STR.addAll(myText.GetDXFData());
 			}
-			else if (myentity instanceof EntVertex){
+			else if (myEntity instanceof EntVertex){
 				//EntVertex should only appeared in objection Polyline, So bypass it.
-				//EntVertex myvertex = (EntVertex) myentity;
+				//EntVertex myvertex = (EntVertex) myEntity;
 				//DXF_STR.addAll(myvertex.GetDXFData());
 			}
 			
