@@ -48,12 +48,61 @@ public class wPoint2D{
 	}
 	
     /**
+     * Get the vectorial(from p1 to p2) Radian angle of two 2D points. [0 -- 2*PI]
+     */
+	public double Angle2P(wPoint2D p1,wPoint2D p2){
+		double R_Angle;
+		double delta_x,delta_y;
+		
+		delta_x = p2.x - p1.x;
+		delta_y = p2.y - p1.y;
+		R_Angle = Math.atan2(delta_y , delta_x);
+		
+		if (R_Angle < 0 ){
+			R_Angle = 2 * Math.PI + R_Angle;
+		}
+		
+		return R_Angle;
+	}
+	
+    /**
+     * Get the vectorial(from p1 to p2) Radian angle of two 2D points. [0 -- 360]
+     */
+	public double Angle2P_D(wPoint2D p1,wPoint2D p2){
+		double R_Angle,D_Angle;
+
+		R_Angle = this.Angle2P(p1,p2);
+		
+		D_Angle = Math.toDegrees(R_Angle);
+		
+		return D_Angle;
+	}
+	
+     /**
+     * GetDistance()
+     * Get the distance of two points;
+     */
+    public double GetDistance(wPoint2D P1,wPoint2D P2){
+		double Distance = 0.0;
+		double dx,dy;
+			
+		dx = P2.x - P1.x;
+		dy = P2.y - P1.y;
+			
+		Distance = Math.sqrt(Math.pow(dx,2) + Math.pow(dy,2));
+
+		return Distance;
+    }
+    /**
      * Print x_value and y_value of the wPoint2D object.
      */
 	public void Print2D(){
 		System.out.println("x="+this.x+"   y="+this.y);
-	}		
-
+	}
+	
+    /**
+     * Print x_value and y_value of the wPoint2D object.
+     */
 	public void PrintAll(){
 		System.out.println("x="+this.x);
 		System.out.println("y="+this.y);

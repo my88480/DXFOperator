@@ -22,10 +22,10 @@ public class EntPolylineTest{
 		System.out.println( myPolyline);
 		System.out.println();
 		
-		System.out.println("The length of the polyline: " + myPolyline.GetPolylineLength());
+		System.out.println("The length of the polyline: " + myPolyline.GetLength());
 		System.out.println();
 		
-		System.out.println("The size of the polyline: " + myPolyline.GetPolylineSize());
+		System.out.println("The size of the polyline: " + myPolyline.GetSize());
 		System.out.println();
 		
         System.out.println("List's Size: " + myPolyline.vertexs.size());

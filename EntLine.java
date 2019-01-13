@@ -130,6 +130,54 @@ public class EntLine extends EntBase {
     }
 
     /**
+     * Get the vectorial Radian angle of the line. [0 -- 2*PI]
+     */
+	public double Angle2D(){
+		double R_Angle;
+		double delta_x,delta_y;
+		
+		delta_x = this.end_point.x - this.start_point.x;
+		delta_y = this.end_point.y - this.start_point.y;
+		R_Angle = Math.atan2(delta_y , delta_x);
+		
+		if (R_Angle < 0 ){
+			R_Angle = 2 * Math.PI + R_Angle;
+		}
+		
+		return R_Angle;
+	}
+	
+    /**
+     * Get the vectorial Radian angle of line. [0 -- 360]
+     */
+	public double Angle2D_D(){
+		double R_Angle,D_Angle;
+
+		R_Angle = this.Angle2D();
+		
+		D_Angle = Math.toDegrees(R_Angle);
+		
+		return D_Angle;
+	}
+	 
+     /**
+     * GetLength()
+     * Get the length of the line;
+     */
+    public double GetLength() {
+		double Length = 0.0;
+		double dx,dy,dz;
+			
+		dx = this.end_point.x - this.start_point.x;
+		dy = this.end_point.y - this.start_point.y;
+		dz = this.end_point.z - this.start_point.z;
+			
+		Length = Math.sqrt(Math.pow(dx,2) + Math.pow(dy,2) + Math.pow(dz,2));
+
+		return Length;
+    }
+
+	 /**
      * Print2D()
      * Terminal output x,y of start_point and end_point.(one line for one point)
      */

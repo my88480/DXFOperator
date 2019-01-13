@@ -229,32 +229,32 @@ public class EntPolyline extends EntBase {
     }
 
      /**
-     * GetPolylineSize()
+     * GetSize()
      * Get the number of the vertexs of the polyline;
      */
-    public int GetPolylineSize() {
+    public int GetSize() {
 		return this.vertexs.size();
     }
 
      /**
-     * GetPolylineLength()
-     * Get the total lenght of the polyline;
+     * GetLength()
+     * Get the total length of the polyline;
      */
-    public double GetPolylineLength() {
-		double myLength = 0.0;
+    public double GetLength() {
+		double Length = 0.0;
 		
 		for (int i = 1; i < this.vertexs.size();i++){
-			//myLength = Math.pow(vertexs.get(i).base_point.x-vertexs.get(i-1).base_point.x);
-			//myLength = Math.sqrt(Math.pow(vertexs.get(i).base_point.x-vertexs.get(i-1).base_point.x));
+			//Length = Math.pow(vertexs.get(i).base_point.x-vertexs.get(i-1).base_point.x);
+			//Length = Math.sqrt(Math.pow(vertexs.get(i).base_point.x-vertexs.get(i-1).base_point.x));
 			double dx,dy,dz;
 			
 			dx = this.vertexs.get(i).base_point.x - this.vertexs.get(i-1).base_point.x;
 			dy = this.vertexs.get(i).base_point.y - this.vertexs.get(i-1).base_point.y;
 			dz = this.vertexs.get(i).base_point.z - this.vertexs.get(i-1).base_point.z;
 			
-			myLength = myLength + Math.sqrt(Math.pow(dx,2) + Math.pow(dy,2) + Math.pow(dz,2) );
+			Length = Length + Math.sqrt(Math.pow(dx,2) + Math.pow(dy,2) + Math.pow(dz,2) );
 		}
-		return myLength;
+		return Length;
     }
 
    /**
@@ -341,28 +341,9 @@ public class EntPolyline extends EntBase {
         params.add(new String[] {"  70",Integer.toString(this.TypeFlag)});
 			
         for (int i  =  0; i < this.vertexs.size(); i++) {
-			//System.out.println("Vertex " + i);
-			//polyline_map.putAll(this.vertexs.get(i).GetPairData());
-			
-			//Map<String,String> myMap = this.vertexs.get(i).GetPairData();
-			
 			params.addAll(this.vertexs.get(i).GetPairData());
-			/*
-			System.out.println("Map's Size: "+myMap.size());
-			for (String key : myMap.keySet()) {
-			   System.out.println("key= "+ key + "\t\t\tvalue= " + myMap.get(key));
-			}
-			//System.out.println();
- 			System.out.println("Polyline Map Data:");
-			System.out.println("Polyline Map's Size: "+polyline_map.size());
-			for (String key : polyline_map.keySet()) {
-			   System.out.println("key= "+ key + "\t\t\tvalue= " + polyline_map.get(key));
-			}
-			System.out.println();
-			*/
-       }
+		}
         params.add(new String[] {"  0","SEQEND"});
- 		
 
         return params;
     }
@@ -427,7 +408,7 @@ public class EntPolyline extends EntBase {
 	public String toString() {
 
 		List<String> DXF_STR = new ArrayList<>();
-		String returnString = new String();
+		String str = new String();
 			
 		DXF_STR = this.GetDXFData();
 			
@@ -435,14 +416,14 @@ public class EntPolyline extends EntBase {
 			String[] mListArray = DXF_STR.toArray(new String[DXF_STR.size()]);
 			for (int i = 0; i < mListArray.length; i++) {
 				if (i < mListArray.length - 1) {
-					returnString += mListArray[i] + "\r\n";
+					str += mListArray[i] + "\r\n";
 				} else {
-					returnString += mListArray[i];
+					str += mListArray[i];
+				}
 			}
 		}
-    }
 	
-    return returnString;
+		return str;
     }	
 
 }
