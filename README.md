@@ -66,7 +66,7 @@ Easy to use:
 		myFileDXF.DXF_WRITER();
 
 Then create one DXF file: loft_output_2019_01_03_08_39_06_0.dxf
-<img src="DXFOperator/blob/master/examples/Partsall.png" alt="Boost.Geometry" style="max-width:100%;">
+<img src="blob/master/examples/Partsall.png" alt="Boost.Geometry" style="max-width:100%;">
 
 *@author David Wu<809758521@qq.com></br>
 *@version 0.5
