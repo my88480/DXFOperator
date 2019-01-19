@@ -67,14 +67,17 @@ Easy to use:
 
 Then create one DXF file: loft_output_2019_01_03_08_39_06_0.dxf
 
+SigmaNest Parts<br>
 <img src="examples/Partsall.png" alt="SigmaNest Parts" style="max-width:100%;">
 
+intersection lines of Belted Pipe and straight pipe<br>
 <img src="examples/parts002.png" alt="intersection lines of Belted Pipe and straight pipe" style="max-width:100%;">
 
 <img src="examples/parts003.png" alt="Part" style="max-width:100%;">
 
 <img src="examples/parts004.png" alt="Part" style="max-width:100%;">
 
+BiArc Curve Fittiing<br>
 <img src="examples/BiArc.png" alt="BiArc Curve Fittiing" style="max-width:100%;">
 
 Other jobs:
