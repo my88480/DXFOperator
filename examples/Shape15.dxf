@@ -1,0 +1,294 @@
+  0
+SECTION
+  2
+HEADER
+  9
+$ACADVER
+  1
+AC1009
+  9
+$INSBASE
+  10
+0.0
+  20
+0.0
+  30
+0.0
+  9
+$EXTMIN
+  10
+-800.0
+  20
+-800.0
+  9
+$EXTMAX
+  10
+800.0
+  20
+800.0
+  9
+$LIMMIN
+  10
+-800.0
+  20
+-800.0
+  9
+$LIMMAX
+  10
+800.0
+  20
+800.0
+  0
+ENDSEC
+  0
+SECTION
+  2
+CLASSES
+  0
+ENDSEC
+  0
+SECTION
+  2
+TABLES
+  0
+ENDSEC
+  0
+SECTION
+  2
+BLOCKS
+  0
+ENDSEC
+  0
+SECTION
+  2
+ENTITIES
+  0
+CIRCLE
+  100
+AcDbEntity
+  8
+0
+  100
+AcDbCircle
+  10
+0.0
+  20
+0.0
+  30
+0.0
+  40
+125.0
+  39
+0.0
+  210
+0.0
+  220
+0.0
+  230
+1.0
+  0
+TEXT
+  100
+AcDbEntity
+  8
+0
+  100
+AcDbText
+  10
+0.0
+  20
+-150.0
+  30
+0.0
+  40
+12.5
+  1
+PARTNUMBER:Shape15
+  39
+0.0
+  50
+0.0
+  210
+0.0
+  220
+0.0
+  230
+1.0
+  0
+TEXT
+  100
+AcDbEntity
+  8
+0
+  100
+AcDbText
+  10
+0.0
+  20
+-170.83333333333334
+  30
+0.0
+  40
+12.5
+  1
+THICKNESS:20
+  39
+0.0
+  50
+0.0
+  210
+0.0
+  220
+0.0
+  230
+1.0
+  0
+TEXT
+  100
+AcDbEntity
+  8
+0
+  100
+AcDbText
+  10
+0.0
+  20
+-191.66666666666666
+  30
+0.0
+  40
+12.5
+  1
+MATERIAL:16MnR
+  39
+0.0
+  50
+0.0
+  210
+0.0
+  220
+0.0
+  230
+1.0
+  0
+TEXT
+  100
+AcDbEntity
+  8
+0
+  100
+AcDbText
+  10
+0.0
+  20
+-212.5
+  30
+0.0
+  40
+12.5
+  1
+QUANTITY:10
+  39
+0.0
+  50
+0.0
+  210
+0.0
+  220
+0.0
+  230
+1.0
+  0
+TEXT
+  100
+AcDbEntity
+  8
+0
+  100
+AcDbText
+  10
+0.0
+  20
+-233.33333333333331
+  30
+0.0
+  40
+12.5
+  1
+DWGNUMBER:SP-2019-01
+  39
+0.0
+  50
+0.0
+  210
+0.0
+  220
+0.0
+  230
+1.0
+  0
+TEXT
+  100
+AcDbEntity
+  8
+0
+  100
+AcDbText
+  10
+0.0
+  20
+-254.16666666666666
+  30
+0.0
+  40
+12.5
+  1
+REVISION:V2.0
+  39
+0.0
+  50
+0.0
+  210
+0.0
+  220
+0.0
+  230
+1.0
+  0
+TEXT
+  100
+AcDbEntity
+  8
+0
+  100
+AcDbText
+  10
+0.0
+  20
+-275.0
+  30
+0.0
+  40
+12.5
+  1
+REMARK:Technical Spefication
+  39
+0.0
+  50
+0.0
+  210
+0.0
+  220
+0.0
+  230
+1.0
+  0
+ENDSEC
+  0
+SECTION
+  2
+OBJECTS
+  0
+ENDSEC
+  0
+EOF
