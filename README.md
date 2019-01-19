@@ -66,7 +66,12 @@ Easy to use:
 		myFileDXF.DXF_WRITER();
 
 Then create one DXF file: loft_output_2019_01_03_08_39_06_0.dxf
-<img src="examples/Partsall.png" alt="Boost.Geometry" style="max-width:100%;">
+
+<img src="examples/Partsall.png" alt="SigmaNest Parts" style="max-width:100%;">
+
+<img src="examples/Parts002.png" alt="intersection lines of Belted Pipe and straight pipe" style="max-width:100%;">
+
+<img src="examples/Parts003.png" alt="Part" style="max-width:100%;">
 
 *@author David Wu<809758521@qq.com></br>
 *@version 0.5
