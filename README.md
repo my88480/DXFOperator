@@ -73,5 +73,13 @@ Then create one DXF file: loft_output_2019_01_03_08_39_06_0.dxf
 
 <img src="examples/parts003.png" alt="Part" style="max-width:100%;">
 
+<img src="examples/parts003.png" alt="Part" style="max-width:100%;">
+
+Other jobs:
+
+1.BiArc Curve Fitting  -- DONE 
+2.Geometry Lofting -- Completed two type 
+3.Computer Geometry Base Class -- NOP
+
 *@author David Wu<809758521@qq.com></br>
 *@version 0.5
