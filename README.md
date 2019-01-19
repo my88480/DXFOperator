@@ -77,9 +77,9 @@ Then create one DXF file: loft_output_2019_01_03_08_39_06_0.dxf
 
 Other jobs:
 
-1.BiArc Curve Fitting  -- DONE 
-2.Geometry Lofting -- Completed two type 
-3.Computer Geometry Base Class -- NOP
+1.BiArc Curve Fitting  -- DONE<br> 
+2.Geometry Lofting -- Completed two type <br>
+3.Computer Geometry Base Class -- NOP<br>
 
 *@author David Wu<809758521@qq.com></br>
 *@version 0.5
