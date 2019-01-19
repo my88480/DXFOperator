@@ -86,5 +86,8 @@ Other jobs:
 2.Geometry Lofting -- Completed two types <br>
 3.Computer Geometry Base Class -- NOP<br>
 
-*@author David Wu<809758521@qq.com></br>
+*@author David Wu<br>
+
+<809758521@qq.com></br>
+
 *@version 0.5
