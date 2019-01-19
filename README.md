@@ -75,6 +75,8 @@ Then create one DXF file: loft_output_2019_01_03_08_39_06_0.dxf
 
 <img src="examples/parts004.png" alt="Part" style="max-width:100%;">
 
+<img src="examples/BiArc.png" alt="BiArc Curve Fittiing" style="max-width:100%;">
+
 Other jobs:
 
 1.BiArc Curve Fitting  -- DONE<br> 
