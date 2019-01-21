@@ -70,6 +70,9 @@ Then create one DXF file: loft_output_2019_01_03_08_39_06_0.dxf
 SigmaNest Parts<br>
 <img src="examples/Partsall.png" alt="SigmaNest Parts" style="max-width:100%;">
 
+intersection of two Cylinders to expand<br>
+<img src="examples/InterSection2Cylinder.png" alt="intersection of two Cylinders" style="max-width:100%;">
+
 intersection lines of Belted Pipe and straight pipe<br>
 <img src="examples/parts002.png" alt="intersection lines of Belted Pipe and straight pipe" style="max-width:100%;">
 
