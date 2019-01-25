@@ -7,13 +7,13 @@ Main File: FileDXF.java</br>
            FileDXFTest.java
 
 EntArcTest</br>
-EntBase</br>
-	EntArc</br>
-	EntCircle</br>
-	EntLine</br>
-	EntPoint</br>
-	EntPolyline</br>
-	EntText</br>
+EntBase</br>----
+	EntArc</br>----
+	EntCircle</br>----
+	EntLine</br>----
+	EntPoint</br>----
+	EntPolyline</br>----
+	EntText</br>----
 	EntVertex</br>
 EntBaseTest</br>
 EntCircleTest</br>
