@@ -67,6 +67,53 @@ Easy to use:
 
 Then create one DXF file: loft_output_2019_01_03_08_39_06_0.dxf
 
+More complex example:
+		wPoint2D PO;
+		wPoint2D Pa,Pb,Pc,Pd;
+		wPoint2D P1,P2,P3,P4;
+		wPoint2D Po1,Po2,Po3,Po4;
+		
+		PO = new wPoint2D(0,0);
+		
+		Po1 = new wPoint2D(F + G,Math.sqrt(Math.pow(E / 2 + G,2) - Math.pow(F + G, 2)));
+		P1 = new wPoint2D(Po1.x - G,Po1.y);
+		Pa = new wPoint2D(Po1.x*((E / 2)/(E/2+G)),Po1.y*((E/2)/(E/2+G)));
+		
+		Po2 = new wPoint2D(Po1.x,-Po1.y);
+		P2 = new wPoint2D(P1.x,-P1.y);
+		Pb = new wPoint2D(Pa.x,-Pa.y);
+		
+		Po3 = new wPoint2D(-Po1.x,-Po1.y);
+		P3 = new wPoint2D(-P1.x,-P1.y);
+		Pc = new wPoint2D(-Pa.x,-Pa.y);
+		
+		Po4 = new wPoint2D(-Po1.x,Po1.y);
+		P4 = new wPoint2D(-P1.x,P1.y);
+		Pd = new wPoint2D(-Pa.x,Pa.y);
+		
+		this.AddLine(P3.x,P3.y,-F,-C/2);
+		this.AddLine(-F,-C/2,-F-A,-C/2);
+		this.AddLine(-F-A,-C/2,-F-A,C/2);
+		this.AddLine(-F-A,C/2,-F,C/2);
+		this.AddLine(-F,C/2,P4.x,P4.y);
+		
+		this.AddArc(Po4,Pd,P4);
+		this.AddArc(PO,Pd,Pc);
+		this.AddArc(Po3,P3,Pc);
+
+		this.AddLine(P2.x,P2.y,F,-C/2);
+		this.AddLine(F,-C/2,F+H,-C/2);
+		this.AddLine(F+H,-C/2,F+H+B,-D/2);
+		this.AddLine(F+H+B,-D/2,F+H+B,D/2);
+		this.AddLine(F+H+B,D/2,F+H,C/2);
+		this.AddLine(F+H,C/2,F,C/2);
+		this.AddLine(F,C/2,P1.x,P1.y);
+
+		this.AddArc(Po1,P1,Pa);
+		this.AddArc(PO,Pb,Pa);
+		this.AddArc(Po2,Pb,P2);
+
+
 SigmaNest Parts<br>
 <img src="examples/Partsall.png" alt="SigmaNest Parts" style="max-width:100%;">
 
