@@ -27,7 +27,7 @@ public class EntCircle extends EntBase {
      * code  10,20,30 -Start Point location (in WCS).
      * code  11,22,31 -End Point location (in WCS).
      */
-    wPoint center_point;
+    wPoint cPoint;
 
     /**
      * code  40 - Radius.
@@ -53,7 +53,7 @@ public class EntCircle extends EntBase {
      * Constructor (empty).
      */
     public EntCircle() {
-        this.center_point = new wPoint();
+        this.cPoint = new wPoint();
 		this.radius = 0.0;
     }
 
@@ -64,7 +64,7 @@ public class EntCircle extends EntBase {
      * @param radius_value -radius of the circle;
      */
     public EntCircle(double x_value,double y_value,double radius_value) {
-        this.center_point = new wPoint(x_value,y_value);
+        this.cPoint = new wPoint(x_value,y_value);
 		this.radius = radius_value;
     }
 
@@ -76,7 +76,7 @@ public class EntCircle extends EntBase {
      * @param radius_value -radius of the circle;
      */
     public EntCircle(double x_value,double y_value,double z_value,double radius_value) {
-        this.center_point = new wPoint(x_value,y_value,z_value);
+        this.cPoint = new wPoint(x_value,y_value,z_value);
 		this.radius = radius_value;
     }
 
@@ -86,7 +86,7 @@ public class EntCircle extends EntBase {
     * @param radius_value -radius of the circle;
      */
     public EntCircle(wPoint2D cPoint,double radius_value) {
-        this.center_point = new wPoint(cPoint.x,cPoint.y);
+        this.cPoint = new wPoint(cPoint.x,cPoint.y);
 		this.radius = radius_value;
     }
 
@@ -96,7 +96,7 @@ public class EntCircle extends EntBase {
     * @param radius_value -radius of the circle;
      */
     public EntCircle(wPoint cPoint,double radius_value) {
-        this.center_point = cPoint;
+        this.cPoint = cPoint;
 		this.radius = radius_value;
     }
 
@@ -105,7 +105,7 @@ public class EntCircle extends EntBase {
      * @param one_circle -one object derived from class EntCircle;
      */
     public EntCircle(EntCircle one_circle) {
-        this.center_point = one_circle.center_point;
+        this.cPoint = one_circle.cPoint;
 		this.radius = one_circle.radius;
         this.thickness = one_circle.thickness;
         this.xExtrusionDirection = one_circle.xExtrusionDirection;
@@ -115,21 +115,45 @@ public class EntCircle extends EntBase {
 
     /**
      * Print2D()
-     * Terminal output x,y of center_point and end_point.(one circle for one point)
+     * Terminal output x,y of cPoint and end_point.(one circle for one point)
      */
     public void Print2D() {
-        System.out.println("Start point:  "+"x = " + this.center_point.x+"   y = " + this.center_point.y);
+        System.out.println("Start point:  "+"x = " + this.cPoint.x+"   y = " + this.cPoint.y);
         System.out.println("radius:  "+"x = " + this.radius);
     }
 
     /**
      * Print3D()
-     * Terminal output x,y,z of center_point and end_point.(one circle for one point)
+     * Terminal output x,y,z of cPoint and end_point.(one circle for one point)
      */
     public void Print3D() {
-        System.out.println("Start point:  "+"x = "+this.center_point.x+"   y = " + this.center_point.y+"   z = " + this.center_point.z);
+        System.out.println("Start point:  "+"x = "+this.cPoint.x+"   y = " + this.cPoint.y+"   z = " + this.cPoint.z);
         System.out.println("radius:  "+"x = " + this.radius);
     }
+	
+    /**Perimeter
+     * GetPerimeter()
+     * Get the area of the circle
+     */
+    public double GetPerimeter() {
+		double thePerimeter;
+
+		thePerimeter = 2 * Math.PI * radius;
+		
+		return thePerimeter;
+	}
+	
+    /**
+     * GetArea()
+     * Get the area of the circle
+     */
+    public double GetArea() {
+		double theArea;
+
+		theArea = Math.PI * Math.pow(radius,2);
+		
+		return theArea;
+	}
 	
     /**
      * GetPairData()
@@ -154,7 +178,7 @@ public class EntCircle extends EntBase {
         params.add(new String[] {"ClassLabel",this.ClassLabel});
         params.add(new String[] {"SubClassLabel",this.SubClassLabel});
 
-        params.addAll(center_point.GetPairData());
+        params.addAll(cPoint.GetPairData());
 
         params.add(new String[] {"radius",Double.toString(this.radius)});
         params.add(new String[] {"thickness",Double.toString(thickness)});
@@ -214,7 +238,7 @@ public class EntCircle extends EntBase {
         DXF_STR.add("  100");
         DXF_STR.add(this.SubClassLabel);
 		
-		DXF_STR.addAll(center_point.GetDXFData());
+		DXF_STR.addAll(cPoint.GetDXFData());
 
         DXF_STR.add("  40");
         DXF_STR.add(Double.toString(this.radius));

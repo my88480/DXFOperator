@@ -26,7 +26,7 @@ public class EntArc extends EntBase {
     /**
      * code  10,20,30 -Center Point location (in WCS).
      */
-    wPoint center_point;
+    wPoint cPoint;
 
     /**
      * code  40 - Radius.
@@ -35,15 +35,15 @@ public class EntArc extends EntBase {
 
 	
     /**
-     * code  50 - startAngle.
+     * code  50 - sAngle Degrees.
      */
-    public     double       startAngle          = 0.0;
+    public     double       sAngle          = 0.0;
 
 	
     /**
-     * code  51 - endAngle.
+     * code  51 - eAngle Degrees.
      */
-    public     double       endAngle          = 0.0;
+    public     double       eAngle          = 0.0;
 
 	
     /**
@@ -64,10 +64,10 @@ public class EntArc extends EntBase {
      * Constructor (empty).
      */
     public EntArc() {
-        this.center_point = new wPoint();
+        this.cPoint = new wPoint();
 		this.radius = 0.0;
-		this.startAngle = 0.0;
-		this.endAngle = 0.0;
+		this.sAngle = 0.0;
+		this.eAngle = 0.0;
     }
 
     /**
@@ -79,10 +79,10 @@ public class EntArc extends EntBase {
      * @param end_angle - end angle of the arc;
      */
     public EntArc(double x_value,double y_value,double radius_value,double start_angle,double end_angle) {
-        this.center_point = new wPoint(x_value,y_value);
+        this.cPoint = new wPoint(x_value,y_value);
 		this.radius = radius_value;
-		this.startAngle = start_angle;
-		this.endAngle = end_angle;
+		this.sAngle = start_angle;
+		this.eAngle = end_angle;
     }
 
     /**
@@ -93,10 +93,10 @@ public class EntArc extends EntBase {
      * @param end_angle - end angle of the arc;
      */
     public EntArc(wPoint2D cPoint,double radius_value,double start_angle,double end_angle) {
-        this.center_point = new wPoint(cPoint);
+        this.cPoint = new wPoint(cPoint);
 		this.radius = radius_value;
-		this.startAngle = start_angle;
-		this.endAngle = end_angle;
+		this.sAngle = start_angle;
+		this.eAngle = end_angle;
     }
 
     /**
@@ -104,15 +104,15 @@ public class EntArc extends EntBase {
      * @param x_value -x of the arc's center point;
      * @param y_value -y of the arc's center point;
      * @param z_value -z of the arc's center point;
-     * @param radius_value -radius of the arc;
+     * @param radius_value - radius of the arc;
      * @param start_angle - start angle of the arc;
      * @param end_angle - end angle of the arc;
      */
     public EntArc(double x_value,double y_value,double z_value,double radius_value,double start_angle,double end_angle) {
-        this.center_point = new wPoint(x_value,y_value,z_value);
+        this.cPoint = new wPoint(x_value,y_value,z_value);
 		this.radius = radius_value;
-		this.startAngle = start_angle;
-		this.endAngle = end_angle;
+		this.sAngle = start_angle;
+		this.eAngle = end_angle;
     }
 
     /**
@@ -123,10 +123,10 @@ public class EntArc extends EntBase {
      * @param end_angle - end angle of the arc;
      */
     public EntArc(wPoint cPoint,double radius_value,double start_angle,double end_angle) {
-        this.center_point = cPoint;
+        this.cPoint = cPoint;
 		this.radius = radius_value;
-		this.startAngle = start_angle;
-		this.endAngle = end_angle;
+		this.sAngle = start_angle;
+		this.eAngle = end_angle;
     }
 
     /**
@@ -150,10 +150,10 @@ public class EntArc extends EntBase {
 		
 		end_angle = Math.toDegrees(Math.atan2((Pb.y - Po.y) , (Pb.x - Po.x)));
 		
-		this.center_point = new wPoint(Po.x,Po.y,0.0);
+		this.cPoint = new wPoint(Po.x,Po.y,0.0);
 		this.radius = radius;
-		this.startAngle = start_angle;
-		this.endAngle = end_angle;
+		this.sAngle = start_angle;
+		this.eAngle = end_angle;
     }
 
     /**
@@ -161,10 +161,10 @@ public class EntArc extends EntBase {
      * @param one_arc -one object derived from class EntArc;
      */
     public EntArc(EntArc one_arc) {
-        this.center_point = one_arc.center_point;
+        this.cPoint = one_arc.cPoint;
 		this.radius = one_arc.radius;
-		this.startAngle = one_arc.startAngle;
-		this.endAngle = one_arc.endAngle;
+		this.sAngle = one_arc.sAngle;
+		this.eAngle = one_arc.eAngle;
         this.thickness = one_arc.thickness;
         this.xExtrusionDirection = one_arc.xExtrusionDirection;
         this.yExtrusionDirection = one_arc.yExtrusionDirection;
@@ -172,37 +172,72 @@ public class EntArc extends EntBase {
     }
 
     /**
-     * MakeStartAngleSmaller (myArc)
-     * @param myArc - One Arc to make the startAngle smaller than the end_angle;
+     * MakesAngleSmaller (theArc)
+     * @param theArc - One Arc to make the sAngle smaller than the end_angle;
     */
-    public void MakeStartAngleSmaller(EntArc myArc) {
-		
-		if (myArc.startAngle > myArc.endAngle){
+    public void MakeSAngleSmaller(EntArc theArc) {
+		if (theArc.sAngle > theArc.eAngle){
 			double angle;
-			angle = myArc.startAngle;
-			myArc.startAngle = myArc.endAngle;
-			myArc.endAngle = angle;
+			angle = theArc.sAngle;
+			theArc.sAngle = theArc.eAngle;
+			theArc.eAngle = angle;
 		}
     }
 
     /**
      * Print2D()
-     * Terminal output x,y of center_point and end_point.(one arc for one point)
+     * Terminal output x,y of cPoint and end_point.(one arc for one point)
      */
     public void Print2D() {
-        System.out.println("Start point:  "+"x = " + this.center_point.x+"   y = " + this.center_point.y);
+        System.out.println("Start point:  "+"x = " + this.cPoint.x+"   y = " + this.cPoint.y);
         System.out.println("radius:  "+"x = " + this.radius);
-        System.out.println("Start angle=  " + this.startAngle+"   End angle= " + this.endAngle);
+        System.out.println("Start angle=  " + this.sAngle+"   End angle= " + this.eAngle);
     }
 
     /**
      * Print3D()
-     * Terminal output x,y,z of center_point and end_point.(one arc for one point)
+     * Terminal output x,y,z of cPoint and end_point.(one arc for one point)
      */
     public void Print3D() {
-        System.out.println("Start point:  "+"x = "+this.center_point.x+"   y = " + this.center_point.y+"   z = " + this.center_point.z);
+        System.out.println("Start point:  "+"x = "+this.cPoint.x+"   y = " + this.cPoint.y+"   z = " + this.cPoint.z);
         System.out.println("radius:  "+"x = " + this.radius);
-        System.out.println("Start angle=  " + this.startAngle+"   End angle= " + this.endAngle);
+        System.out.println("Start angle=  " + this.sAngle+"   End angle= " + this.eAngle);
+    }
+
+    /**
+     * GetAngle()
+     * Get the angle of the arc
+     */
+    public double GetAngle() {
+        double angle;
+		
+		angle = this.eAngle - this.sAngle;
+		
+		return angle;
+    }
+
+    /**
+     * GetArcLength()
+     * Get the arc length of the arc
+     */
+    public double GetArcLength() {
+        double arclength;
+		
+		arclength = 2 * Math.PI * this.radius * (this.eAngle - this.sAngle) / 360.0;
+		
+		return arclength;
+    }
+
+    /**
+     * GetArea()
+     * Get the area of the arc
+     */
+    public double GetArea() {
+        double area;
+		
+		area = Math.PI * Math.pow(this.radius,2) * (this.eAngle - this.sAngle) / 360.0;
+		
+		return area;
     }
 
     /**
@@ -228,11 +263,11 @@ public class EntArc extends EntBase {
         params.add(new String[] {"ClassLabel",this.ClassLabel});
         params.add(new String[] {"SubClassLabel",this.SubClassLabel});
 
-        params.addAll(center_point.GetPairData());
+        params.addAll(cPoint.GetPairData());
 
         params.add(new String[] {"radius",Double.toString(this.radius)});
-        params.add(new String[] {"startAngle",Double.toString(this.startAngle)});
-        params.add(new String[] {"endAngle",Double.toString(this.endAngle)});
+        params.add(new String[] {"sAngle",Double.toString(this.sAngle)});
+        params.add(new String[] {"eAngle",Double.toString(this.eAngle)});
         params.add(new String[] {"thickness",Double.toString(thickness)});
         params.add(new String[] {"xExtrusionDirection",Double.toString(xExtrusionDirection)});
         params.add(new String[] {"yExtrusionDirection",Double.toString(yExtrusionDirection)});
@@ -290,14 +325,14 @@ public class EntArc extends EntBase {
         DXF_STR.add("  100");
         DXF_STR.add(this.SubClassLabel);
 		
-		DXF_STR.addAll(center_point.GetDXFData());
+		DXF_STR.addAll(cPoint.GetDXFData());
 
         DXF_STR.add("  40");
         DXF_STR.add(Double.toString(this.radius));
         DXF_STR.add("  50");
-        DXF_STR.add(Double.toString(this.startAngle));
+        DXF_STR.add(Double.toString(this.sAngle));
         DXF_STR.add("  51");
-        DXF_STR.add(Double.toString(this.endAngle));
+        DXF_STR.add(Double.toString(this.eAngle));
         DXF_STR.add("  39");
         DXF_STR.add(Double.toString(this.thickness));
         DXF_STR.add("  210");

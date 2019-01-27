@@ -29,9 +29,9 @@ public class EntPoint extends EntBase{
     /**
      * code  10,20,30 -Point location (in WCS).
      */
-	public wPoint base_point;
+	public wPoint bPoint;
 	
-	//base_point = new wPoint();  //Should not be here.move to the constructor.
+	//bPoint = new wPoint();  //Should not be here.move to the constructor.
 
 	/**
 	* code  39 - Thickness (optional; default  =  0).
@@ -58,11 +58,11 @@ public class EntPoint extends EntBase{
      * Constructor (empty).
      */
 	public EntPoint(){
-		base_point = new wPoint();
+		bPoint = new wPoint();
 		/*
-		base_point.x = 0.0;
-		base_point.y = 0.0;
-		base_point.z = 0.0;
+		bPoint.x = 0.0;
+		bPoint.y = 0.0;
+		bPoint.z = 0.0;
 		*/
 	}
 	
@@ -71,11 +71,11 @@ public class EntPoint extends EntBase{
      * @param x_value
      */
 	public EntPoint(double x_value){
-		base_point = new wPoint(x_value);
+		bPoint = new wPoint(x_value);
 		/*
-		base_point.x = x_value;
-		base_point.y = 0.0;
-		base_point.z = 0.0;
+		bPoint.x = x_value;
+		bPoint.y = 0.0;
+		bPoint.z = 0.0;
 		*/
 	}
 	
@@ -85,11 +85,11 @@ public class EntPoint extends EntBase{
      * @param y_value
      */
 	public EntPoint(double x_value,double y_value){
-		base_point = new wPoint(x_value,y_value);
+		bPoint = new wPoint(x_value,y_value);
 		/*
-		base_point.x = x_value;
-		base_point.y = y_value;
-		base_point.z = 0.0;
+		bPoint.x = x_value;
+		bPoint.y = y_value;
+		bPoint.z = 0.0;
 		*/
 	}
 	
@@ -100,11 +100,11 @@ public class EntPoint extends EntBase{
      * @param z_value
      */
 	public EntPoint(double x_value,double y_value,double z_value){
-		base_point = new wPoint(x_value,y_value,z_value);
+		bPoint = new wPoint(x_value,y_value,z_value);
 		/*
-		base_point.x = x_value;
-		base_point.y = y_value;
-		base_point.z = z_value;
+		bPoint.x = x_value;
+		bPoint.y = y_value;
+		bPoint.z = z_value;
 		*/
 	}
 
@@ -113,10 +113,10 @@ public class EntPoint extends EntBase{
      * @param onepoint
      */
 	public EntPoint(wPoint2D onepoint){
-		base_point = new wPoint();
+		bPoint = new wPoint();
 
-		this.base_point.x = onepoint.x;
-		this.base_point.y = onepoint.y;
+		this.bPoint.x = onepoint.x;
+		this.bPoint.y = onepoint.y;
 	}
 	
     /**
@@ -124,9 +124,9 @@ public class EntPoint extends EntBase{
      * @param onepoint
      */
 	public EntPoint(wPoint onepoint){
-		base_point = new wPoint();
+		bPoint = new wPoint();
 
-		this.base_point = onepoint;
+		this.bPoint = onepoint;
 	}
 	
     /**
@@ -134,11 +134,11 @@ public class EntPoint extends EntBase{
      * @param onepoint
      */
 	public EntPoint(EntPoint onepoint){
-		base_point = new wPoint();
+		bPoint = new wPoint();
 
-		this.base_point.x = onepoint.base_point.x;
-		this.base_point.y = onepoint.base_point.y;
-		this.base_point.z = onepoint.base_point.z;
+		this.bPoint.x = onepoint.bPoint.x;
+		this.bPoint.y = onepoint.bPoint.y;
+		this.bPoint.z = onepoint.bPoint.z;
 		this.thickness = onepoint.thickness;
 		this.xang = onepoint.xang;
 		this.xExtrusionDirection = onepoint.xExtrusionDirection;
@@ -151,7 +151,7 @@ public class EntPoint extends EntBase{
      * Terminal output x,y of the point.
      */
 	public void Print2D(){
-		System.out.println("x = " + base_point.x + "   y = "+base_point.y);
+		System.out.println("x = " + bPoint.x + "   y = "+bPoint.y);
 	}		
 	
     /**
@@ -159,7 +159,7 @@ public class EntPoint extends EntBase{
      * Terminal output x,y,z of the point.
      */
 	public void Print3D(){
-		System.out.println("x = "+base_point.x+"   y = "+base_point.y+"   z = "+base_point.z);
+		System.out.println("x = "+bPoint.x+"   y = "+bPoint.y+"   z = "+bPoint.z);
 	}		
 
 	public List<String []> GetPairData(){
@@ -169,11 +169,11 @@ public class EntPoint extends EntBase{
 		params.add(new String[] {"ClassLabel",this.ClassLabel});
 		params.add(new String[] {"SubClassLabel",this.SubClassLabel});
 		
-		params.addAll(base_point.GetPairData());
+		params.addAll(bPoint.GetPairData());
 		/*
-		params.put("x",Double.toString(base_point.x));
-		params.put("y",Double.toString(base_point.y));
-		params.put("z",Double.toString(base_point.z));
+		params.put("x",Double.toString(bPoint.x));
+		params.put("y",Double.toString(bPoint.y));
+		params.put("z",Double.toString(bPoint.z));
 		*/
 		params.add(new String[] {"thickness",Double.toString(thickness)});	
 		params.add(new String[] {"xang",Double.toString(xang)});	
@@ -227,14 +227,14 @@ public class EntPoint extends EntBase{
 		DXF_STR.add("  100");
 		DXF_STR.add(this.SubClassLabel);
 		
-		DXF_STR.addAll(this.base_point.GetDXFData());
+		DXF_STR.addAll(this.bPoint.GetDXFData());
 		/*
 		DXF_STR.add("10");
-		DXF_STR.add(Double.toString(base_point.x));
+		DXF_STR.add(Double.toString(bPoint.x));
 		DXF_STR.add("20");
-		DXF_STR.add(Double.toString(base_point.y));
+		DXF_STR.add(Double.toString(bPoint.y));
 		DXF_STR.add("30");
-		DXF_STR.add(Double.toString(base_point.z));
+		DXF_STR.add(Double.toString(bPoint.z));
 		*/
 		DXF_STR.add("  39");	
 		DXF_STR.add(Double.toString(thickness));	

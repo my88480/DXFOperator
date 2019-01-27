@@ -27,8 +27,8 @@ public class EntLine extends EntBase {
      * code  10,20,30 -Start Point location (in WCS).
      * code  11,22,31 -End Point location (in WCS).
      */
-    wPoint start_point;
-    wPoint end_point;
+    wPoint sPoint;
+    wPoint ePoint;
 
     /**
     * code  39 - Thickness (optional; default  =  0).
@@ -48,8 +48,8 @@ public class EntLine extends EntBase {
      * Constructor (empty).
      */
     public EntLine() {
-        start_point = new wPoint();
-        end_point = new wPoint();
+        this.sPoint = new wPoint();
+        this.ePoint = new wPoint();
         /*
         x = 0.0;
         y = 0.0;
@@ -65,8 +65,8 @@ public class EntLine extends EntBase {
      * @param ye_value -y of end point;
      */
     public EntLine(double xs_value,double ys_value,double xe_value,double ye_value) {
-        start_point = new wPoint(xs_value,ys_value);
-        end_point = new wPoint(xe_value,ye_value);
+        this.sPoint = new wPoint(xs_value,ys_value);
+        this.ePoint = new wPoint(xe_value,ye_value);
 
         /*
         x = x_value;
@@ -85,8 +85,8 @@ public class EntLine extends EntBase {
      * @param ze_value -z of end point;
      */
     public EntLine(double xs_value,double ys_value,double zs_value,double xe_value,double ye_value,double ze_value) {
-        start_point = new wPoint(xs_value,ys_value,zs_value);
-        end_point = new wPoint(xe_value,ye_value,ze_value);
+        this.sPoint = new wPoint(xs_value,ys_value,zs_value);
+        this.ePoint = new wPoint(xe_value,ye_value,ze_value);
 
         /*
         x = x_value;
@@ -101,8 +101,8 @@ public class EntLine extends EntBase {
      * @param ePoint -y of start point;
      */
     public EntLine(wPoint2D sPoint,wPoint2D ePoint) {
-        start_point = new wPoint(sPoint.x,sPoint.y,0.0);
-        end_point = new wPoint(ePoint.x,ePoint.y,0.0);
+        this.sPoint = new wPoint(sPoint.x,sPoint.y,0.0);
+        this.ePoint = new wPoint(ePoint.x,ePoint.y,0.0);
     }
 
     /**
@@ -111,8 +111,8 @@ public class EntLine extends EntBase {
      * @param ePoint -y of start point;
      */
     public EntLine(wPoint sPoint,wPoint ePoint) {
-        start_point = new wPoint(sPoint);
-        end_point = new wPoint(ePoint);
+        this.sPoint = new wPoint(sPoint);
+        this.ePoint = new wPoint(ePoint);
     }
 
     /**
@@ -120,8 +120,8 @@ public class EntLine extends EntBase {
      * @param one_line -one object derived from class EntLine;
      */
     public EntLine(EntLine one_line) {
-        this.start_point = one_line.start_point;
-        this.end_point = one_line.end_point;
+        this.sPoint = one_line.sPoint;
+        this.ePoint = one_line.ePoint;
 
         this.thickness = one_line.thickness;
         this.xExtrusionDirection = one_line.xExtrusionDirection;
@@ -136,8 +136,8 @@ public class EntLine extends EntBase {
 		double R_Angle;
 		double delta_x,delta_y;
 		
-		delta_x = this.end_point.x - this.start_point.x;
-		delta_y = this.end_point.y - this.start_point.y;
+		delta_x = this.ePoint.x - this.sPoint.x;
+		delta_y = this.ePoint.y - this.sPoint.y;
 		R_Angle = Math.atan2(delta_y , delta_x);
 		
 		if (R_Angle < 0 ){
@@ -168,9 +168,9 @@ public class EntLine extends EntBase {
 		double Length = 0.0;
 		double dx,dy,dz;
 			
-		dx = this.end_point.x - this.start_point.x;
-		dy = this.end_point.y - this.start_point.y;
-		dz = this.end_point.z - this.start_point.z;
+		dx = this.ePoint.x - this.sPoint.x;
+		dy = this.ePoint.y - this.sPoint.y;
+		dz = this.ePoint.z - this.sPoint.z;
 			
 		Length = Math.sqrt(Math.pow(dx,2) + Math.pow(dy,2) + Math.pow(dz,2));
 
@@ -179,20 +179,20 @@ public class EntLine extends EntBase {
 
 	 /**
      * Print2D()
-     * Terminal output x,y of start_point and end_point.(one line for one point)
+     * Terminal output x,y of sPoint and ePoint.(one line for one point)
      */
     public void Print2D() {
-        System.out.println("Start point:  "+"x = "+start_point.x+"   y = "+start_point.y);
-        System.out.println("End point:  "+"x = "+end_point.x+"   y = "+end_point.y);
+        System.out.println("Start point:  "+"x = "+sPoint.x+"   y = "+sPoint.y);
+        System.out.println("End point:  "+"x = "+ePoint.x+"   y = "+ePoint.y);
     }
 
     /**
      * Print3D()
-     * Terminal output x,y,z of start_point and end_point.(one line for one point)
+     * Terminal output x,y,z of sPoint and ePoint.(one line for one point)
      */
     public void Print3D() {
-        System.out.println("Start point:  "+"x = "+start_point.x+"   y = "+start_point.y+"   z = "+start_point.z);
-        System.out.println("End point:  "+"x = "+end_point.x+"   y = "+end_point.y+"   z = "+end_point.z);
+        System.out.println("Start point:  "+"x = "+sPoint.x+"   y = "+sPoint.y+"   z = "+sPoint.z);
+        System.out.println("End point:  "+"x = "+ePoint.x+"   y = "+ePoint.y+"   z = "+ePoint.z);
     }
 
     /**
@@ -218,8 +218,8 @@ public class EntLine extends EntBase {
         params.add(new String[] {"ClassLabel",this.ClassLabel});
         params.add(new String[] {"SubClassLabel",this.SubClassLabel});
 
-        params.addAll(start_point.GetPairData());
-        params.addAll(end_point.GetPairData());
+        params.addAll(sPoint.GetPairData());
+        params.addAll(ePoint.GetPairData());
 
         params.add(new String[] {"thickness",Double.toString(thickness)});
         params.add(new String[] {"xExtrusionDirection",Double.toString(xExtrusionDirection)});
@@ -278,21 +278,21 @@ public class EntLine extends EntBase {
         DXF_STR.add("  100");
         DXF_STR.add(this.SubClassLabel);
 		
-		DXF_STR.addAll(start_point.GetDXFData());
+		DXF_STR.addAll(sPoint.GetDXFData());
 		/*
         DXF_STR.add("10");
-        DXF_STR.add(Double.toString(start_point.x));
+        DXF_STR.add(Double.toString(sPoint.x));
         DXF_STR.add("20");
-        DXF_STR.add(Double.toString(start_point.y));
+        DXF_STR.add(Double.toString(sPoint.y));
         DXF_STR.add("30");
-        DXF_STR.add(Double.toString(start_point.z));
+        DXF_STR.add(Double.toString(sPoint.z));
 		*/
         DXF_STR.add("  11");
-        DXF_STR.add(Double.toString(end_point.x));
+        DXF_STR.add(Double.toString(ePoint.x));
         DXF_STR.add("  21");
-        DXF_STR.add(Double.toString(end_point.y));
+        DXF_STR.add(Double.toString(ePoint.y));
         DXF_STR.add("  31");
-        DXF_STR.add(Double.toString(end_point.z));
+        DXF_STR.add(Double.toString(ePoint.z));
 
         DXF_STR.add("  39");
         DXF_STR.add(Double.toString(thickness));
