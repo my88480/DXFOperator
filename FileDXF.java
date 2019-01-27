@@ -149,6 +149,16 @@ public class FileDXF{
         this.secEntities.entities.add(point);
     }
 	
+	/**
+     * AddPoint(myPoint)
+     * <pre>Add one Point into the Entities' Section
+     * @param myPoint - Point Entity;
+ 	 *	</pre>
+    */
+    public void AddPoint(EntPoint myPoint) {
+        this.secEntities.entities.add(myPoint);
+    }
+	
     /**
      * AddLine(xs_value,ys_value,xe_value,ye_value)
      * <pre>Add one line into the Entities' Section
@@ -197,6 +207,16 @@ public class FileDXF{
     */
     public void AddLine(wPoint sPoint,wPoint ePoint) {
         this.secEntities.entities.add(new EntLine(sPoint,ePoint));
+    }
+	
+    /**
+     * AddLine(myLine)
+     * <pre>Add one line into the Entities' Section
+     * @param myLine - Line Entity;
+ 	 *	</pre>
+    */
+    public void AddLine(EntLine myLine) {
+        this.secEntities.entities.add(new EntLine(myLine));
     }
 	
      /**
@@ -257,6 +277,16 @@ public class FileDXF{
     */
     public void AddCircle(wPoint cPoint,double radius) {
         this.secEntities.entities.add(new EntCircle(cPoint,radius));
+    }
+	
+    /**
+     * AddCircle(myCircle)
+     * <pre>Add one Circle into the Entities' Section
+     * @param myCircle - Circle entity;
+ 	 *	</pre>
+    */
+    public void AddCircle(EntCircle myCircle) {
+        this.secEntities.entities.add(new EntCircle(myCircle));
     }
 	
     /**
@@ -388,6 +418,16 @@ public class FileDXF{
     }
 
     /**
+     * AddText(myText))
+     * <pre>Add one Text into the Entities' Section
+     * @param EntText - Text Entity;
+ 	 *	</pre>
+    */
+    public void AddText(EntText myText) {
+        this.secEntities.entities.add(new EntText(myText));
+    }
+
+    /**
      * AddPolyline(points)
      * <pre>Add one Polyline into the Entities' Section
      * @param points - two dimensions array of double, x - points[i][0], y - points[i][1];
@@ -395,6 +435,16 @@ public class FileDXF{
     */
     public void AddPolyline(double[][] points) {
         this.secEntities.entities.add(new EntPolyline(points));
+    }
+	
+    /**
+     * AddPolyline(myPolyline)
+     * <pre>Add one Polyline into the Entities' Section
+     * @param myPolyline - Polyline Entity;
+ 	 *	</pre>
+    */
+    public void AddPolyline(EntPolyline myPolyline) {
+        this.secEntities.entities.add(new EntPolyline(myPolyline));
     }
 	
 	
