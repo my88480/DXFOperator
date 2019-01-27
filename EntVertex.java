@@ -202,22 +202,6 @@ public class EntVertex extends EntBase {
     public void Print3D() {
         System.out.println("x = "+base_point.x+"   y = "+base_point.y+"   z = "+base_point.z);
     }
-
-    public void PrintAll() {
-        System.out.println("Entity Type: " + this.EntityName);
-        System.out.println("ClassLabel: " + this.ClassLabel);
-        System.out.println("SubClassLabel: " + this.SubClassLabel);
-
-        base_point.PrintAll();
-
-        /*
-        System.out.println("x = "+base_point.x);
-        System.out.println("y = "+base_point.y);
-        System.out.println("z = "+base_point.z);
-        */
-
-    }
-
 	
 	public List<String []> GetPairData(){
 		List<String []> params=new ArrayList<>();
@@ -275,24 +259,5 @@ public class EntVertex extends EntBase {
         return DXF_STR;
     }
 	
-	public String toString() {
 
-		List<String> DXF_STR = new ArrayList<>();
-		String returnString = new String();
-			
-		DXF_STR = this.GetDXFData();
-			
-		if (null != DXF_STR && DXF_STR.size() > 0) {
-			String[] mListArray = DXF_STR.toArray(new String[DXF_STR.size()]);
-			for (int i = 0; i < mListArray.length; i++) {
-				if (i < mListArray.length - 1) {
-					returnString += mListArray[i] + "\r\n";
-				} else {
-					returnString += mListArray[i];
-			}
-		}
-    }
-	
-    return returnString;
-    }
 }

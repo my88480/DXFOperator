@@ -283,43 +283,7 @@ public class EntText extends EntBase{
 			}
 		}		
 	}		
-	
-	public void PrintAll(){
-		if (this.text.length()>0){
-			String lines = this.text; 
-			lines=lines.replace("\r\n","\n");
-			lines=lines.replace("\n\r","\n");
-			lines=lines.replace("\r","\n");
-			String[] splitstr=lines.split("\n");
 
-			for (int i=0;i<splitstr.length;i++) {  
-
-				System.out.println();
-				System.out.println("Entity Type: " + this.EntityName);
-				System.out.println("ClassLabel: " + this.ClassLabel);
-				
-				super.PrintAll();
-				
-				System.out.println("SubClassLabel: " + this.SubClassLabel);
-				
-				//base_point.PrintAll();
-				System.out.println("x = " + this.base_point.x);
-				System.out.println("y = " + (this.base_point.y - (1.0 + 2.0 / 3.0) * this.height * i));
-				System.out.println("z = " + this.base_point.z);
-				
-				System.out.println("height = " + this.height);
-				//System.out.println("TEXT: "+this.text);
-				System.out.println("TEXT: " + splitstr[i]);
-				System.out.println("thickness = " +this.thickness);
-				System.out.println("rotang = " + this.rotang);
-				System.out.println("xExtrusionDirection = " + this.xExtrusionDirection);
-				System.out.println("yExtrusionDirection = " + this.yExtrusionDirection);
-				System.out.println("zExtrusionDirection = " + this.zExtrusionDirection);
-			}
-		}	
-	}		
-
-	
 	public List<String []> GetPairData(){
 		List<String []> params=new ArrayList<>();
 		if (this.text.length()>0){
@@ -438,24 +402,4 @@ public class EntText extends EntBase{
 		return DXF_STR;
 	}
 
-	public String toString() {
-
-		List<String> DXF_STR = new ArrayList<>();
-		String returnString = new String();
-			
-		DXF_STR = this.GetDXFData();
-			
-		if (null != DXF_STR && DXF_STR.size() > 0) {
-			String[] mListArray = DXF_STR.toArray(new String[DXF_STR.size()]);
-			for (int i = 0; i < mListArray.length; i++) {
-				if (i < mListArray.length - 1) {
-					returnString += mListArray[i] + "\r\n";
-				} else {
-					returnString += mListArray[i];
-			}
-		}
-    }
-	
-    return returnString;
-    }	
 }
