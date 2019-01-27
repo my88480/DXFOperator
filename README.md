@@ -117,6 +117,8 @@ More complex example:<br>
 		
     }
 
+You would get one dxf file just like the following:
+<img src="examples/shape810.png" alt="SigmaNest Parts" style="max-width:100%;">
 
 SigmaNest Parts<br>
 <img src="examples/Partsall.png" alt="SigmaNest Parts" style="max-width:100%;">
