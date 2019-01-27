@@ -134,6 +134,10 @@ intersection lines of Belted Pipe and straight pipe<br>
 BiArc Curve Fittiing<br>
 <img src="examples/BiArc.png" alt="BiArc Curve Fittiing" style="max-width:100%;">
 
+convert dxf file to jpg file<br>
+<img src="examples/PPPP2_image.jpg" alt="dxf2jpg" style="max-width:100%;">
+
+
 Other jobs:
 
 1.BiArc Curve Fitting  -- DONE<br> 
