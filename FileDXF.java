@@ -184,11 +184,11 @@ public class FileDXF{
     }
 	
     /**
-     * AddLine(xs_value,ys_value,ePoint)
+     * AddLine(sPoint,xe_value,ye_value)
      * <pre>Add one line into the Entities' Section
-     * @param xs_value - Axis X;
-     * @param ys_value - Axis Y;
-     * @param ePoint - wPoint2D End Point;
+     * @param sPoint - Axis Y;
+     * @param xe_value - Axis X;
+     * @param ye_value - Axis Y;
  	 *	</pre>
     */
     public void AddLine(wPoint2D sPoint,double xe_value,double ye_value) {
