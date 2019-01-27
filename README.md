@@ -69,6 +69,7 @@ Then create one DXF file: loft_output_2019_01_03_08_39_06_0.dxf
 
 More complex example:<br>
 
+    public void AddShape810(double A,double B,double C,double D,double E,double F,double G,double H){
 		wPoint2D PO;
 		wPoint2D Pa,Pb,Pc,Pd;
 		wPoint2D P1,P2,P3,P4;
@@ -113,6 +114,8 @@ More complex example:<br>
 		this.AddArc(Po1,P1,Pa);
 		this.AddArc(PO,Pb,Pa);
 		this.AddArc(Po2,Pb,P2);
+		
+    }
 
 
 SigmaNest Parts<br>
