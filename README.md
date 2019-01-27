@@ -67,7 +67,8 @@ Easy to use:
 
 Then create one DXF file: loft_output_2019_01_03_08_39_06_0.dxf
 
-More complex example:
+More complex example:<br>
+
 		wPoint2D PO;
 		wPoint2D Pa,Pb,Pc,Pd;
 		wPoint2D P1,P2,P3,P4;
