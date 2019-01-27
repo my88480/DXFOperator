@@ -173,6 +173,41 @@ public class FileDXF{
     }
 	
     /**
+     * AddLine(xe_value,ye_value)
+     * <pre>Add one line into the Entities' Section
+     * @param xe_value - Axis X;
+     * @param ye_value - Axis Y;
+ 	 *	</pre>
+    */
+    public void AddLine(double xe_value,double ye_value) {
+        this.AddLine(0,0,xe_value,ye_value);
+    }
+	
+    /**
+     * AddLine(xs_value,ys_value,ePoint)
+     * <pre>Add one line into the Entities' Section
+     * @param xs_value - Axis X;
+     * @param ys_value - Axis Y;
+     * @param ePoint - wPoint2D End Point;
+ 	 *	</pre>
+    */
+    public void AddLine(wPoint2D sPoint,double xe_value,double ye_value) {
+        this.AddLine(sPoint,xe_value,ye_value);
+    }
+	
+    /**
+     * AddLine(xs_value,ys_value,ePoint)
+     * <pre>Add one line into the Entities' Section
+     * @param xs_value - Axis X;
+     * @param ys_value - Axis Y;
+     * @param ePoint - wPoint2D End Point;
+ 	 *	</pre>
+    */
+    public void AddLine(double xs_value,double ys_value,wPoint2D ePoint) {
+        this.AddLine(xs_value,ys_value,ePoint);
+    }
+	
+    /**
      * AddLine(sPoint,ePoint)
      * <pre>Add one line into the Entities' Section
      * @param sPoint - Start point of the line;
@@ -196,6 +231,18 @@ public class FileDXF{
     */
     public void AddLine(double xs_value,double ys_value,double zs_value,double xe_value,double ye_value,double ze_value) {
         this.secEntities.entities.add(new EntLine(xs_value,ys_value,zs_value,xe_value,ye_value,ze_value));
+    }
+
+    /**
+     * AddLine(xe_value,ye_value,ze_value)
+     * <pre>Add one line into the Entities' Section
+     * @param xe_value - Axis X;
+     * @param ye_value - Axis Y;
+     * @param ze_value - Axis Z;
+ 	 *	</pre>
+    */
+    public void AddLine(double xe_value,double ye_value,double ze_value) {
+        this.AddLine(0,0,0,xe_value,ye_value,ze_value);
     }
 
     /**
@@ -332,6 +379,18 @@ public class FileDXF{
     }
 
     /**
+     * AddArc(radius,start_angle,end_angle)
+     * <pre>Add one arc into the Entities' Section
+     * @param radius - radius;
+     * @param start_angle - start_angle;
+     * @param end_angle - end_angle;
+ 	 *	</pre>
+    */
+    public void AddArc(double radius,double start_angle,double end_angle) {
+        this.secEntities.entities.add(new EntArc(0,0,0,radius,start_angle,end_angle));
+    }
+
+    /**
      * AddArc(cPoint,radius,start_angle,end_angle)
      * <pre>Add one arc into the Entities' Section
      * @param cPoint - Center point of the arc;
@@ -420,7 +479,7 @@ public class FileDXF{
     /**
      * AddText(myText))
      * <pre>Add one Text into the Entities' Section
-     * @param EntText - Text Entity;
+     * @param myText - Text Entity;
  	 *	</pre>
     */
     public void AddText(EntText myText) {
