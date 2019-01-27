@@ -54,6 +54,23 @@ public class wPoint{
 		this.z = onepoint.z;
 	}
 	
+     /**
+     * GetDistance()
+     * Get the distance of two points;
+     */
+    public double GetDistance(wPoint P1,wPoint P2){
+		double Distance = 0.0;
+		double dx,dy,dz;
+			
+		dx = P2.x - P1.x;
+		dy = P2.y - P1.y;
+		dz = P2.z - P1.z;
+			
+		Distance = Math.sqrt(Math.pow(dx,2) + Math.pow(dy,2) + Math.pow(dz,2));
+
+		return Distance;
+    }
+	
     /**
      * Print x_value and y_value of the wPoint object.
      */
@@ -113,7 +130,7 @@ public class wPoint{
 	public String toString() {
 
 		List<String> DXF_STR = new ArrayList<>();
-		String returnString = new String();
+		String str = new String();
 			
 		DXF_STR = this.GetDXFData();
 			
@@ -121,13 +138,13 @@ public class wPoint{
 			String[] mListArray = DXF_STR.toArray(new String[DXF_STR.size()]);
 			for (int i = 0; i < mListArray.length; i++) {
 				if (i < mListArray.length - 1) {
-					returnString += mListArray[i] + "\r\n";
+					str += mListArray[i] + "\r\n";
 				} else {
-					returnString += mListArray[i];
+					str += mListArray[i];
 			}
 		}
     }
 	
-    return returnString;
+    return str;
     }
 }

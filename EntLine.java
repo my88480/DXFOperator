@@ -97,8 +97,8 @@ public class EntLine extends EntBase {
 	
     /**
      * Constructor (sPoint,ePoint)
-     * @sPoint -x of start point;
-     * @pePoint -y of start point;
+     * @param sPoint -x of start point;
+     * @param ePoint -y of start point;
      */
     public EntLine(wPoint2D sPoint,wPoint2D ePoint) {
         start_point = new wPoint(sPoint.x,sPoint.y,0.0);
@@ -107,8 +107,8 @@ public class EntLine extends EntBase {
 
     /**
      * Constructor (sPoint,ePoint)
-     * @sPoint -x of start point;
-     * @pePoint -y of start point;
+     * @param sPoint -x of start point;
+     * @param ePoint -y of start point;
      */
     public EntLine(wPoint sPoint,wPoint ePoint) {
         start_point = new wPoint(sPoint);

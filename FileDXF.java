@@ -32,6 +32,12 @@ public class FileDXF{
      */
 	public String dxf_filename;
  
+    /**
+     * DXF File overlap? - default value:no.
+     * DXF File named loft_output_*** will not be overlapped.
+     */
+	public boolean DXFFile_Overlap = false;
+ 
 	/**
      * jpg_filename -JPG File name.
      */
@@ -77,6 +83,7 @@ public class FileDXF{
      * Constructor (empty).
      */
     public FileDXF() {
+		dxf_filename = new String();
 		secHeader = new SecHeader();
 		secClasses = new SecClasses();
 		secTables = new SecTables();
@@ -192,7 +199,20 @@ public class FileDXF{
         this.secEntities.entities.add(new EntLine(sPoint,ePoint));
     }
 	
-    /**
+     /**
+     * AddCircle(radius)
+     * <pre>Add one Circle into the Entities' Section
+     * @param radius - radius;
+ 	 *	</pre>
+    */
+    public void AddCircle(double radius) {
+		wPoint2D cPoint;
+		
+		cPoint = new wPoint2D(0,0);
+        this.secEntities.entities.add(new EntCircle(cPoint,radius));
+    }
+	
+   /**
      * AddCircle(x_value,y_value,radius)
      * <pre>Add one Circle into the Entities' Section
      * @param x_value - Axis X;
@@ -202,17 +222,6 @@ public class FileDXF{
     */
     public void AddCircle(double x_value,double y_value,double radius) {
         this.secEntities.entities.add(new EntCircle(x_value,y_value,radius));
-    }
-	
-    /**
-     * AddCircle(cPoint,radius)
-     * <pre>Add one Circle into the Entities' Section
-     * @param cPoint - enter point of the circle;
-     * @param radius - radius;
- 	 *	</pre>
-    */
-    public void AddCircle(wPoint2D cPoint,double radius) {
-        this.secEntities.entities.add(new EntCircle(cPoint,radius));
     }
 	
     /**
@@ -228,6 +237,17 @@ public class FileDXF{
         this.secEntities.entities.add(new EntCircle(x_value,y_value,z_value,radius));
     }
 
+    /**
+     * AddCircle(cPoint,radius)
+     * <pre>Add one Circle into the Entities' Section
+     * @param cPoint - enter point of the circle;
+     * @param radius - radius;
+ 	 *	</pre>
+    */
+    public void AddCircle(wPoint2D cPoint,double radius) {
+        this.secEntities.entities.add(new EntCircle(cPoint,radius));
+    }
+	
     /**
      * AddCircle(cPoint,radius)
      * <pre>Add one Circle into the Entities' Section
@@ -282,7 +302,7 @@ public class FileDXF{
     }
 
     /**
-     * AddArc(cPoint,,radius,start_angle,end_angle)
+     * AddArc(cPoint,radius,start_angle,end_angle)
      * <pre>Add one arc into the Entities' Section
      * @param cPoint - Center point of the arc;
      * @param radius - radius;
@@ -292,6 +312,28 @@ public class FileDXF{
     */
     public void AddArc(wPoint cPoint,double radius,double start_angle,double end_angle) {
         this.secEntities.entities.add(new EntArc(cPoint,radius,start_angle,end_angle));
+    }
+	
+    /**
+     * AddArc(cPoint,sPoint,ePoint)
+     * <pre>Add one arc into the Entities' Section
+     * @param cPoint - Center point of the arc;
+     * @param sPoint - Start point of the arc;
+     * @param ePoint - End point of the arc;
+ 	 *	</pre>
+    */
+    public void AddArc(wPoint2D cPoint,wPoint2D sPoint,wPoint2D ePoint) {
+        this.secEntities.entities.add(new EntArc(cPoint,sPoint,ePoint));
+    }
+	
+    /**
+     * AddArc(myArc)
+     * <pre>Add one arc into the Entities' Section
+     * @param myArc - one Arc Entity;
+ 	 *	</pre>
+    */
+    public void AddArc(EntArc myArc) {
+        this.secEntities.entities.add(new EntArc(myArc));
     }
 	
     /**
@@ -417,21 +459,21 @@ public class FileDXF{
 
     /**
      * toString()
-     * @Override the toString method of FileDXF Class.
+     * Override the toString method of FileDXF Class.
 	 * <pre>Output example:
 	 *	</pre>
      */
     public String toString() {
 		/* require the jar file --- common-lang3
 		List<String> DXF_STR = new ArrayList<>();
-		String returnString = new String();
+		String str = new String();
 		
         DXF_STR = this.GetDXFData();
-		returnString = String.join(",",DXF_STR);
+		str = String.join(",",DXF_STR);
 		*/
 
  		List<String> DXF_STR = new ArrayList<>();
-		String returnString = new String();
+		String str = new String();
 		
         DXF_STR = this.GetDXFData();
 		
@@ -439,14 +481,14 @@ public class FileDXF{
             String[] mListArray = DXF_STR.toArray(new String[DXF_STR.size()]);
             for (int i = 0; i < mListArray.length; i++) {
 				if (i < mListArray.length - 1) {
-					returnString += mListArray[i] + "\r\n";
+					str += mListArray[i] + "\r\n";
 				} else {
-					returnString += mListArray[i];
+					str += mListArray[i];
 				}
 			}
         }
 	
-        return returnString;
+        return str;
     }
 
     /**
@@ -460,16 +502,19 @@ public class FileDXF{
 		SimpleDateFormat df = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
 		String extension_filename = ".dxf";
 		
-		if (this.dxf_filename==null){
+		if (this.dxf_filename == null || this.dxf_filename.length() < 1){
 			this.dxf_filename = "loft_output_" + df.format(new Date()) + "_0" + extension_filename;
 		}
 		
 		File file = new File(this.dxf_filename);
 
-		//If output dxf file has already existed, then create another out dxf file.
-		for (int i=1;file.exists();i++){
-			file = new File("loft_output_" + df.format(new Date()) + "_" + i + extension_filename);
+		//If output dxf file has already existed, then create another DXF file.
+		if (this.dxf_filename.indexOf("loft_output_") != -1 ){
+			for (int i=1;file.exists();i++){
+				file = new File("loft_output_" + df.format(new Date()) + "_" + i + extension_filename);
+			}
 		}
+		
 		/*
 		if (file.exists()){
 			file = new File("loft_output_" + df.format(new Date()) + "_B.dxf");

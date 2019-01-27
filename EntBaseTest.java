@@ -37,6 +37,8 @@ public class EntBaseTest{
 		for (int i  =  0; i < dxf_str.size(); i++) {
 			System.out.println(dxf_str.get(i)); 
 		}
+		
+		ent_base.PrintAll();
 
 	}
 

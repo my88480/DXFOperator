@@ -206,40 +206,6 @@ public class EntArc extends EntBase {
     }
 
     /**
-     * PrintAll()
-     * <pre>Terminal output the description of center_point and end_point.(serveral arcs)
-	 * Output example:
-	 * Entity Type: ARC
-	 * ClassLabel: AcDbEntity
-	 * SubClassLabel: AcDbArc
-	 * x = 10.0
-	 * y = 10.0
-	 * z = 10.0
-	 * x = 50.2314
-	 * y = 30.12546
-	 * z = 80.01234567890124
-	 * thickness = 0.0
-	 * xExtrusionDirection = 0.0
-	 * yExtrusionDirection = 0.0
-	 * zExtrusionDirection = 1.0</pre>	 
-     */
-    public void PrintAll() {
-        System.out.println("Entity Type: " + this.EntityName);
-        System.out.println("ClassLabel: "+this.ClassLabel);
-        System.out.println("SubClassLabel: "+this.SubClassLabel);
-
-        center_point.PrintAll();
-
-        System.out.println("radius = " + this.radius);
-        System.out.println("startAngle = " + this.startAngle);
-        System.out.println("endAngle = " + this.endAngle);
-        System.out.println("thickness = "+this.thickness);
-        System.out.println("xExtrusionDirection = "+this.xExtrusionDirection);
-        System.out.println("yExtrusionDirection = "+this.yExtrusionDirection);
-        System.out.println("zExtrusionDirection = "+this.zExtrusionDirection);
-    }
-
-    /**
      * GetPairData()
      * @return Map of elements description of Entity ARC.
 	 * <pre>Output example:
@@ -344,24 +310,4 @@ public class EntArc extends EntBase {
         return DXF_STR;
     }
 
-	public String toString() {
-
-		List<String> DXF_STR = new ArrayList<>();
-		String returnString = new String();
-			
-		DXF_STR = this.GetDXFData();
-			
-		if (null != DXF_STR && DXF_STR.size() > 0) {
-			String[] mListArray = DXF_STR.toArray(new String[DXF_STR.size()]);
-			for (int i = 0; i < mListArray.length; i++) {
-				if (i < mListArray.length - 1) {
-					returnString += mListArray[i] + "\r\n";
-				} else {
-					returnString += mListArray[i];
-			}
-		}
-    }
-	
-    return returnString;
-    }
 }

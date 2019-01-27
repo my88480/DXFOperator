@@ -56,12 +56,54 @@ public class wPoint2DTest{
 		  System.out.println(myMap.get(i)[0]);
 		}
 	
-		
 		List<String> dxf_str = point7.GetDXFData();
 		System.out.println("The point's DXF string:"); 
 		for (String s:dxf_str){
 			System.out.println(s);
 		}		
+		
+		//To test the radian angle of two points
+		double R_Angle,D_Angle;
+		point1 = new wPoint2D(0,0);
+		point2 = new wPoint2D(10,10);
+		R_Angle = point1.Angle2P(point1,point2);
+		System.out.println("R_Angle=" + R_Angle);
+		D_Angle = point1.Angle2P_D(point1,point2);
+		System.out.println("D_Angle=" + D_Angle);
+		point2 = new wPoint2D(-10,10);
+		R_Angle = point1.Angle2P(point1,point2);
+		System.out.println("R_Angle=" + R_Angle);
+		D_Angle = point1.Angle2P_D(point1,point2);
+		System.out.println("D_Angle=" + D_Angle);
+		point2 = new wPoint2D(-10,-10);
+		R_Angle = point1.Angle2P(point1,point2);
+		System.out.println("R_Angle=" + R_Angle);
+		D_Angle = point1.Angle2P_D(point1,point2);
+		System.out.println("D_Angle=" + D_Angle);
+		point2 = new wPoint2D(10,-10);
+		R_Angle = point1.Angle2P(point1,point2);
+		System.out.println("R_Angle=" + R_Angle);
+		D_Angle = point1.Angle2P_D(point1,point2);
+		System.out.println("D_Angle=" + D_Angle);
+		
+		point2 = new wPoint2D(-10,0);
+		R_Angle = point1.Angle2P(point1,point2);
+		System.out.println("R_Angle=" + R_Angle);
+		D_Angle = point1.Angle2P_D(point1,point2);
+		System.out.println("D_Angle=" + D_Angle);
+		
+		point2 = new wPoint2D(0,10);
+		R_Angle = point1.Angle2P(point1,point2);
+		System.out.println("R_Angle=" + R_Angle);
+		D_Angle = point1.Angle2P_D(point1,point2);
+		System.out.println("D_Angle=" + D_Angle);
+		
+		point2 = new wPoint2D(0,-10);
+		R_Angle = point1.Angle2P(point1,point2);
+		System.out.println("R_Angle=" + R_Angle);
+		D_Angle = point1.Angle2P_D(point1,point2);
+		System.out.println("D_Angle=" + D_Angle);
+		
 	}
 
 }

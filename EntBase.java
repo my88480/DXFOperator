@@ -22,8 +22,14 @@ public class EntBase{
 	}
 	
 	public void PrintAll(){
-		System.out.println("Entity Base");
-		System.out.println("layer: "+this.layer);
+	   	List<String []>  myMap = this.GetPairData();
+        System.out.println("Entity List's Size: "+myMap.size());
+		for (String [] key : myMap) {
+		   System.out.println("key= "+ key[0] + "\t\t\tvalue= " + key[1]);
+		}
+		System.out.println();		
+		//System.out.println("Entity Base");
+		//System.out.println("layer: "+this.layer);
 	}		
 	
 	public List<String []> GetPairData(){

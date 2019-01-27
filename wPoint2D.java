@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * @author David Wu <809758521@qq.com>
  * @version V0.2
- * Definition of a point,composed by x,y,z(three coordinate values).
+ * Definition of a point,composed by x,y(two coordinate values).
  */
 public class wPoint2D{
     /**
@@ -50,6 +50,37 @@ public class wPoint2D{
     /**
      * Get the vectorial(from p1 to p2) Radian angle of two 2D points. [0 -- 2*PI]
      */
+	public double Angle2P(wPoint2D p){
+		double R_Angle;
+		double delta_x,delta_y;
+		
+		delta_x = p.x - this.x;
+		delta_y = p.y - this.y;
+		R_Angle = Math.atan2(delta_y , delta_x);
+		
+		if (R_Angle < 0 ){
+			R_Angle = 2 * Math.PI + R_Angle;
+		}
+		
+		return R_Angle;
+	}
+	
+    /**
+     * Get the vectorial(from p1 to p2) Radian angle of two 2D points. [0 -- 360]
+     */
+	public double Angle2P_D(wPoint2D p){
+		double R_Angle,D_Angle;
+
+		R_Angle = this.Angle2P(p);
+		
+		D_Angle = Math.toDegrees(R_Angle);
+		
+		return D_Angle;
+	}
+	
+	/**
+     * Get the vectorial(from p1 to p2) Radian angle of two 2D points. [0 -- 2*PI]
+     */
 	public double Angle2P(wPoint2D p1,wPoint2D p2){
 		double R_Angle;
 		double delta_x,delta_y;
@@ -82,6 +113,22 @@ public class wPoint2D{
      * GetDistance()
      * Get the distance of two points;
      */
+    public double GetDistance(wPoint2D P){
+		double Distance = 0.0;
+		double dx,dy;
+			
+		dx = this.x - P.x;
+		dy = this.y - P.y;
+			
+		Distance = Math.sqrt(Math.pow(dx,2) + Math.pow(dy,2));
+
+		return Distance;
+    }
+	
+     /**
+     * GetDistance()
+     * Get the distance of two points;
+     */
     public double GetDistance(wPoint2D P1,wPoint2D P2){
 		double Distance = 0.0;
 		double dx,dy;
@@ -93,6 +140,7 @@ public class wPoint2D{
 
 		return Distance;
     }
+	
     /**
      * Print x_value and y_value of the wPoint2D object.
      */

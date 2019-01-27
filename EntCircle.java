@@ -149,7 +149,8 @@ public class EntCircle extends EntBase {
 	 * yExtrusionDirection = 0.0
 	 * zExtrusionDirection = 1.0</pre>	 
      */
-    public void PrintAll() {
+	/*
+	 public void PrintAll() {
         System.out.println("Entity Type: " + this.EntityName);
         System.out.println("ClassLabel: "+this.ClassLabel);
         System.out.println("SubClassLabel: "+this.SubClassLabel);
@@ -162,7 +163,8 @@ public class EntCircle extends EntBase {
         System.out.println("yExtrusionDirection = "+this.yExtrusionDirection);
         System.out.println("zExtrusionDirection = "+this.zExtrusionDirection);
     }
-
+	*/
+	
     /**
      * GetPairData()
      * @return Map of elements description of Entity CIRCLE.
@@ -261,7 +263,7 @@ public class EntCircle extends EntBase {
 
         return DXF_STR;
     }
-
+/*
 	public String toString() {
 
 		List<String> DXF_STR = new ArrayList<>();
@@ -282,4 +284,5 @@ public class EntCircle extends EntBase {
 	
     return returnString;
     }
+	*/
 }
