@@ -192,7 +192,7 @@ public class FileDXF{
  	 *	</pre>
     */
     public void AddLine(wPoint2D sPoint,double xe_value,double ye_value) {
-        this.AddLine(sPoint,xe_value,ye_value);
+        this.AddLine(sPoint.x,sPoint.y,xe_value,ye_value);
     }
 	
     /**
@@ -204,7 +204,7 @@ public class FileDXF{
  	 *	</pre>
     */
     public void AddLine(double xs_value,double ys_value,wPoint2D ePoint) {
-        this.AddLine(xs_value,ys_value,ePoint);
+        this.AddLine(xs_value,ys_value,ePoint.x,ePoint.y);
     }
 	
     /**
