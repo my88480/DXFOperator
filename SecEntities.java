@@ -68,6 +68,10 @@ public class SecEntities{
 				EntLine myLine= (EntLine) myEntity;
 				myLine.PrintAll();
 			}
+			else if (myEntity instanceof EntLWPolyline){
+				EntLWPolyline myLWPolyline = (EntLWPolyline) myEntity;
+				myLWPolyline.PrintAll();
+			}
 			else if (myEntity instanceof EntPolyline){
 				EntPolyline myPolyline = (EntPolyline) myEntity;
 				myPolyline.PrintAll();
@@ -162,6 +166,10 @@ public class SecEntities{
 			if (myEntity instanceof EntLine) {
 				EntLine myLine= (EntLine) myEntity;
 				DXF_STR.addAll(myLine.GetDXFData());
+			}
+			else if (myEntity instanceof EntLWPolyline){
+				EntLWPolyline myLWPolyline = (EntLWPolyline) myEntity;
+				DXF_STR.addAll(myLWPolyline.GetDXFData());
 			}
 			else if (myEntity instanceof EntPolyline){
 				EntPolyline myPolyline = (EntPolyline) myEntity;

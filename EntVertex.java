@@ -17,6 +17,11 @@ public class EntVertex extends EntBase {
     public String EntityName = "VERTEX";
 
     /**
+     * code  5 - Handle.
+     */
+    public String Handle;
+
+    /**
      * code  100 -Class Label.
      */
     public String ClassLabel = "AcDbEntity";
@@ -126,6 +131,7 @@ public class EntVertex extends EntBase {
         base_point.y = 0.0;
         base_point.z = 0.0;
         */
+		Handle = FileDXF.ApplyHandle();
     }
 
     /**
@@ -139,6 +145,7 @@ public class EntVertex extends EntBase {
         base_point.y = 0.0;
         base_point.z = 0.0;
         */
+		Handle = FileDXF.ApplyHandle();
     }
 
     /**
@@ -153,6 +160,7 @@ public class EntVertex extends EntBase {
         base_point.y = y_value;
         base_point.z = 0.0;
         */
+		Handle = FileDXF.ApplyHandle();
     }
 
     /**
@@ -168,6 +176,7 @@ public class EntVertex extends EntBase {
         base_point.y = y_value;
         base_point.z = z_value;
         */
+		Handle = FileDXF.ApplyHandle();
     }
 
     /**
@@ -185,6 +194,7 @@ public class EntVertex extends EntBase {
         this.base_point.y = onepoint.base_point.y;
         this.base_point.z = onepoint.base_point.z;
 		*/
+		Handle = FileDXF.ApplyHandle();
     }
 
     /**
@@ -203,23 +213,6 @@ public class EntVertex extends EntBase {
         System.out.println("x = "+base_point.x+"   y = "+base_point.y+"   z = "+base_point.z);
     }
 	
-	public List<String []> GetPairData(){
-		List<String []> params=new ArrayList<>();
-
-        params.add(new String[] {"Entity",this.EntityName});
-        params.add(new String[] {"ClassLabel",this.ClassLabel});
-        params.add(new String[] {"SubClassLabel",this.SubClassLabel});
-
-        params.addAll(this.base_point.GetPairData());
-        /*
-        params.put("x",Double.toString(base_point.x));
-        params.put("y",Double.toString(base_point.y));
-        params.put("z",Double.toString(base_point.z));
-        */
-
-        return params;
-    }
-
     /**
      * GetDXFData()
      * @return the dxf data of entity point.
@@ -240,6 +233,9 @@ public class EntVertex extends EntBase {
 
         DXF_STR.add("  0");
         DXF_STR.add(this.EntityName);
+        
+		DXF_STR.add("  5");
+        DXF_STR.add(this.Handle);
         
 		DXF_STR.addAll(super.GetDXFData());
 

@@ -15,6 +15,11 @@ public class EntText extends EntBase{
     public String EntityName = "TEXT";
 
     /**
+     * code  5 - Handle.
+     */
+    public String Handle[];
+
+    /**
      * code  100 -Class Label.
      */
 	public String ClassLabel = "AcDbEntity";
@@ -27,43 +32,46 @@ public class EntText extends EntBase{
     /**
      * code  10,20,30 -Text location (in WCS).
      */
-	public wPoint base_point;
+	public wPoint bPoint;
+	
+	public wPoint iPoint[];
 	
     /**
      * code  40 - Height.
      */
-    public    double                      height          = 0.0;
+    public    double	height = 0.0;
 
     /**
      * code   1 - Text value (the string itself).
      */
-    public    String                      text            = null;
+    public    String	text = null;
 
+	public String[] splitText;
 
     /**
      * code  50 - Rotation angle (optional; default = 0).
      */
-    public    double                      rotang          = 0.0;
+    public    double	rotang          = 0.0;
 
 
     /**
      * code  41 - Relative X scale factor.
      *            For fit-type text (optional; default = 1.0).
      */
-    public    double                      relxscale       = 1.0;
+    public    double	relxscale  = 1.0;
 
 
     /**
      * code  51 - Oblique angle (optional default = 0).
      */
-    public    double                      obliqueang      = 0.0;
+    public    double obliqueang = 0.0;
 
 
     /**
      * code   7 - Text style name (optional; default = "STANDARD").
      *            Set to style table reference.
      */
-    public    String                style="Stardand";
+    public    String  style="Stardand";
 
 
     /**
@@ -73,7 +81,7 @@ public class EntText extends EntBase{
      *   <LI>4 = Text is upside down (mirrored in Y).
      * </UL>
      */
-    public    int                         textgenflags    = 0;
+    public    int	textgenflags  = 0;
 
 
     /**
@@ -89,7 +97,7 @@ public class EntText extends EntBase{
      * </UL>
      *      See vertalignflags for clarification.
      */
-    public    int                         horzalignflags  = 0;
+    public    int horzalignflags  = 0;
 
 
     /**
@@ -103,7 +111,7 @@ public class EntText extends EntBase{
      * </UL>
      *       See second_point for clarification.
      */
-    public    int                         vertalignflags  = 0;
+    public    int  vertalignflags  = 0;
 
 
     /**
@@ -115,42 +123,53 @@ public class EntText extends EntBase{
      *      alignment point (or the second alignment point for Aligned or Fit).
      *      (In OCS).
      */
-    public    wPoint               second_point ;
+    public    wPoint  second_point ;
 	
 	
 	/**
 	* code  39 - Thickness (optional; default  =  0).
 	*/
 	public double thickness = 0.0;
-	
-    /**
-     * code 210,220,230 -
-     *            Extrusion direction. Present if the extrusion direction is
-     *            not parallel to the world Z axis.
-     */
-    public double   xExtrusionDirection = 0;
-    public double   yExtrusionDirection = 0;
-    public double   zExtrusionDirection = 1;
 
-    /**
+	public void SliceText(){
+		String lines = this.text; 
+		
+		lines=lines.replace("\r\n","\n");
+		lines=lines.replace("\n\r","\n");
+		lines=lines.replace("\r","\n");
+		splitText=lines.split("\n");
+		//System.out.println("splitText's length: " + splitText.length);
+		
+		Handle = new String[splitText.length];
+		iPoint = new wPoint[splitText.length];
+		for (int i=0;i<splitText.length;i++){
+			
+			Handle[i] = FileDXF.ApplyHandle();
+			iPoint[i] = new wPoint(this.bPoint.x,this.bPoint.y - (1.0 + 2.0 / 3.0) * this.height * i,this.bPoint.z);
+		}
+	}
+ 
+	/**
      * Constructor (empty).
      */
 	public EntText(){
-		this.base_point = new wPoint();
+		this.bPoint = new wPoint();
 		this.second_point = new wPoint();
 		this.height = 5.0;
 		//this.text = null;
 		this.text = "";
+		this.SliceText();
 	}
 	
     /**
      * Constructor (x)
      */
 	public EntText(String str){
-		this.base_point = new wPoint();
+		this.bPoint = new wPoint();
 		this.second_point = new wPoint();
 		this.height = 5.0;
 		this.text = str;
+		this.SliceText();
 	}
 	
     /**
@@ -158,10 +177,11 @@ public class EntText extends EntBase{
      * @param x_value
      */
 	public EntText(double x_value,double height_value,String str){
-		this.base_point = new wPoint(x_value);
+		this.bPoint = new wPoint(x_value);
 		this.second_point = new wPoint();
 		this.height = height_value;
 		this.text = str;
+		this.SliceText();
 	}
 	
     /**
@@ -170,10 +190,11 @@ public class EntText extends EntBase{
      * @param y_value
      */
 	public EntText(double x_value,double y_value,double height_value,String str){
-		this.base_point = new wPoint(x_value,y_value);
+		this.bPoint = new wPoint(x_value,y_value);
 		this.second_point = new wPoint();
 		this.height = height_value;
 		this.text = str;
+		this.SliceText();
 	}
 	
     /**
@@ -183,10 +204,11 @@ public class EntText extends EntBase{
      * @param str -content of the text
      */
 	public EntText(wPoint2D bPoint,double height_value,String str){
-		this.base_point = new wPoint(bPoint);
+		this.bPoint = new wPoint(bPoint);
 		this.second_point = new wPoint();
 		this.height = height_value;
 		this.text = str;
+		this.SliceText();
 	}
 	
     /**
@@ -198,10 +220,11 @@ public class EntText extends EntBase{
      * @param str -content of the text
      */
 	public EntText(double x_value,double y_value,double z_value,double height_value,String str){
-		this.base_point = new wPoint(x_value,y_value,z_value);
+		this.bPoint = new wPoint(x_value,y_value,z_value);
 		this.second_point = new wPoint();
 		this.height = height_value;
 		this.text = str;
+		this.SliceText();
 	}
 
     /**
@@ -211,34 +234,33 @@ public class EntText extends EntBase{
      * @param str -content of the text
      */
 	public EntText(wPoint bPoint,double height_value,String str){
-		this.base_point = bPoint;
+		this.bPoint = bPoint;
 		this.second_point = new wPoint();
 		this.height = height_value;
 		this.text = str;
+		this.SliceText();
 	}
 	
     /**
      * Constructor (Class EntText)
-     * @param onetext
+     * @param oneText
      */
-	public EntText(EntText onetext){
-		this.base_point = new wPoint(onetext.base_point);
-		this.second_point = new wPoint(onetext.second_point);
+	public EntText(EntText oneText){
+		this.bPoint = new wPoint(oneText.bPoint);
+		this.second_point = new wPoint(oneText.second_point);
 		
-		this.height = onetext.height;
-		this.text = onetext.text;
-		this.thickness = onetext.thickness;
-		this.rotang = onetext.rotang;
-		this.xExtrusionDirection = onetext.xExtrusionDirection;
-		this.yExtrusionDirection = onetext.yExtrusionDirection;
-		this.zExtrusionDirection = onetext.zExtrusionDirection;
+		this.height = oneText.height;
+		this.text = oneText.text;
+		this.thickness = oneText.thickness;
+		this.rotang = oneText.rotang;
 		
-		this.relxscale = onetext.relxscale;
-		this.obliqueang = onetext.obliqueang;
-		this.style = onetext.style;
-		this.textgenflags = onetext.textgenflags;
-		this.horzalignflags = onetext.horzalignflags;
-		this.vertalignflags = onetext.vertalignflags;
+		this.relxscale = oneText.relxscale;
+		this.obliqueang = oneText.obliqueang;
+		this.style = oneText.style;
+		this.textgenflags = oneText.textgenflags;
+		this.horzalignflags = oneText.horzalignflags;
+		this.vertalignflags = oneText.vertalignflags;
+		this.SliceText();
 	}
 	
     /**
@@ -247,18 +269,11 @@ public class EntText extends EntBase{
      */
 	public void Print2D(){
 		if (this.text.length()>0){
-			String lines = this.text; 
 			
-			lines=lines.replace("\r\n","\n");
-			lines=lines.replace("\n\r","\n");
-			lines=lines.replace("\r","\n");
-			String[] splitstr=lines.split("\n");
-			//System.out.println("splitstr's length: " + splitstr.length);
-			
-			for (int i = 0;i < splitstr.length && splitstr[0].length() > 0 ; i++) {  
-				System.out.println("x = " + this.base_point.x + "   y = " + (this.base_point.y - (1.0 + 2.0 / 3.0) * this.height * i));
+			for (int i = 0;i < splitText.length && splitText[0].length() > 0 ; i++) {  
+				System.out.println("x = " + this.bPoint.x + "   y = " + (this.bPoint.y - (1.0 + 2.0 / 3.0) * this.height * i));
 				System.out.println("height = "+this.height);
-				System.out.println("TEXT: " + splitstr[i]);
+				System.out.println("TEXT: " + splitText[i]);
 			}
 			
 		}
@@ -270,100 +285,79 @@ public class EntText extends EntBase{
      */
 	public void Print3D(){
 		if (this.text.length()>0){
-			String lines = this.text; 
-			lines=lines.replace("\r\n","\n");
-			lines=lines.replace("\n\r","\n");
-			lines=lines.replace("\r","\n");
-			String[] splitstr=lines.split("\n");
-
-			for (int i=0;i<splitstr.length;i++) {  
-				System.out.println("x = " + this.base_point.x+"   y = " + (this.base_point.y - (1.0 + 2.0 / 3.0) * this.height * i) + "   z = "+ this.base_point.z);
+			for (int i=0;i<splitText.length;i++) {  
+				System.out.println("x = " + this.bPoint.x + "   y = " + (this.bPoint.y - (1.0 + 2.0 / 3.0) * this.height * i) + "   z = "+ this.bPoint.z);
 				System.out.println("height = "+this.height);
-				System.out.println("TEXT:   " + splitstr[i]);
+				System.out.println("TEXT:   " + splitText[i]);
 			}
 		}		
 	}		
-
-	public List<String []> GetPairData(){
-		List<String []> params=new ArrayList<>();
-		if (this.text.length()>0){
-
-			String lines = this.text; 
-			lines=lines.replace("\r\n","\n");
-			lines=lines.replace("\n\r","\n");
-			lines=lines.replace("\r","\n");
-			String[] splitstr=lines.split("\n");
-
-			for (int i=0;i<splitstr.length;i++) {  
-				params.add(new String[] {"Entity",this.EntityName});
-				params.add(new String[] {"ClassLabel",this.ClassLabel});
-
-				params.addAll(super.GetPairData());
-				
-				
-				params.add(new String[] {"SubClassLabel",this.SubClassLabel});
-				
-				//params.addAll(this.base_point.GetPairData());
-				params.add(new String[] {"x",Double.toString(this.base_point.x)});	
-				params.add(new String[] {"y",Double.toString(this.base_point.y - (1.0 + 2.0 / 3.0) * this.height * i)});	
-				params.add(new String[] {"z",Double.toString(this.base_point.z)});	
-
-				params.add(new String[] {"height",Double.toString(this.height)});	
-				params.add(new String[] {"text content",splitstr[i]});	
-				params.add(new String[] {"thickness",Double.toString(this.thickness)});	
-				params.add(new String[] {"rotang",Double.toString(this.rotang)});	
-				params.add(new String[] {"xExtrusionDirection",Double.toString(this.xExtrusionDirection)});	
-				params.add(new String[] {"yExtrusionDirection",Double.toString(this.yExtrusionDirection)});	
-				params.add(new String[] {"zExtrusionDirection",Double.toString(this.zExtrusionDirection)});	
-			}
-		}	
-		return params;
-	}	
 	
     /**
      * GetDXFData()
      * @return the dxf data of entity text.
 	 * <pre>Output example:
-	 * 0
-	 * TEXT
-	 * 100
-	 * AcDbEntity
-	 * 8
-	 * 0
-	 * 100
-	 * AcDbText
-	 * 10
-	 * 10.0
-	 * 20
-	 * 10.0
-	 * 30
-	 * 10.0
-	 * 39
-	 * 0.0
-	 * 50
-	 * 0.0
-	 * 210
-	 * 0.0
-	 * 220
-	 * 0.0
-	 * 230
-	 * 1.0</pre>
+	*   0
+	* TEXT
+	*   5
+	* 113
+	* 330
+	* 1A7
+	* 100
+	* AcDbEntity
+	*   8
+	* 0
+	* 100
+	* AcDbText
+	*  10
+	* 0.0
+	*  20
+	* -194.25
+	*  30
+	* 0.0
+	*  40
+	* 27.75
+	*   1
+	* QUANTITY:10
+	* 100
+	* AcDbText
+	*   0
+	* TEXT
+	*   5
+	* 114
+	* 330
+	* 1A7
+	* 100
+	* AcDbEntity
+	*   8
+	* 0
+	* 100
+	* AcDbText
+	*  10
+	* 0.0
+	*  20
+	* -240.5
+	*  30
+	* 0.0
+	*  40
+	* 27.75
+	*   1
+	* REMARK:Deviation:0.1mm
+	* 100
+	* AcDbText</pre>
      */
 	 public List<String> GetDXFData(){
 		List<String> DXF_STR = new ArrayList<>();
 		
 		if (this.text.length()>0){
-			String lines = this.text; 
-			lines=lines.replace("\r\n","\n");
-			lines=lines.replace("\n\r","\n");
-			lines=lines.replace("\r","\n");
-			String[] splitstr=lines.split("\n");
-
-			for (int i=0;i<splitstr.length;i++) {  
-		 
-
+			for (int i=0;i<splitText.length;i++) {  
 				DXF_STR.add("  0");
 				DXF_STR.add(this.EntityName);
+				
+				DXF_STR.add("  5");
+				//DXF_STR.add(this.Handle);
+				DXF_STR.add(Handle[i]);
+
 				DXF_STR.add("  100");
 				DXF_STR.add(this.ClassLabel);
 
@@ -372,31 +366,30 @@ public class EntText extends EntBase{
 				DXF_STR.add("  100");
 				DXF_STR.add(this.SubClassLabel);
 				
-				//DXF_STR.addAll(this.base_point.GetDXFData());
+				//DXF_STR.addAll(this.bPoint.GetDXFData());
+				/*
 				DXF_STR.add("  10");
-				DXF_STR.add(Double.toString(this.base_point.x));
+				DXF_STR.add(Double.toString(iPoint[i].x));
 				DXF_STR.add("  20");
-				DXF_STR.add(Double.toString(this.base_point.y - (1.0 + 2.0 / 3.0) * this.height * i));
+				DXF_STR.add(Double.toString(iPoint[i].y));
 				DXF_STR.add("  30");
-				DXF_STR.add(Double.toString(this.base_point.z));
-
+				DXF_STR.add(Double.toString(iPoint[i].z));
+				*/
+				DXF_STR.addAll(iPoint[i].GetDXFData());
+				
 				DXF_STR.add("  40");
 				DXF_STR.add(Double.toString(this.height));
 				DXF_STR.add("  1");
 				//DXF_STR.add(this.text);
-				DXF_STR.add(splitstr[i]);
-				
+				DXF_STR.add(splitText[i]);
 				
 				DXF_STR.add("  39");	
 				DXF_STR.add(Double.toString(this.thickness));	
 				DXF_STR.add("  50");	
 				DXF_STR.add(Double.toString(this.rotang));	
-				DXF_STR.add("  210");	
-				DXF_STR.add(Double.toString(this.xExtrusionDirection));	
-				DXF_STR.add("  220");	
-				DXF_STR.add(Double.toString(this.yExtrusionDirection));	
-				DXF_STR.add("  230");	
-				DXF_STR.add(Double.toString(this.zExtrusionDirection));	
+
+				DXF_STR.add("  100");
+				DXF_STR.add(this.SubClassLabel);
 			}  
 		}
 		return DXF_STR;

@@ -43,6 +43,11 @@ public class FileDXF{
      */
 	public String jpg_filename;
 
+	
+	public static String hex_handle = "BA";
+	
+	public static int int_handle = Integer.parseInt(hex_handle, 16);
+
     /**
      * Section Header.
      */
@@ -106,6 +111,21 @@ public class FileDXF{
 		this.secObjects = dxf_file.secObjects;
     }
 
+	public static String ApplyHandle() {
+		String Handle = hex_handle;
+		SetNextHandle();
+		return Handle;
+	}
+	
+	public static void SetNextHandle() {
+		int_handle += 1;
+		hex_handle = Integer.toHexString(int_handle).toUpperCase();
+		if (hex_handle.equals("BD") || hex_handle.equals("105")) {
+			int_handle += 1;
+			hex_handle = Integer.toHexString(int_handle).toUpperCase();
+		}
+	}
+	
     /**
      * AddPoint(x_value,y_value)
      * <pre>Add one Point into the Entities' Section

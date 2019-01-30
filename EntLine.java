@@ -14,6 +14,11 @@ public class EntLine extends EntBase {
     public String EntityName = "LINE";
 
     /**
+     * code  5 - Handle.
+     */
+    public String Handle;
+
+    /**
      * code  100 -Class Label.
      */
     public String ClassLabel = "AcDbEntity";
@@ -50,6 +55,9 @@ public class EntLine extends EntBase {
     public EntLine() {
         this.sPoint = new wPoint();
         this.ePoint = new wPoint();
+		
+		Handle = FileDXF.ApplyHandle();
+		
         /*
         x = 0.0;
         y = 0.0;
@@ -67,6 +75,9 @@ public class EntLine extends EntBase {
     public EntLine(double xs_value,double ys_value,double xe_value,double ye_value) {
         this.sPoint = new wPoint(xs_value,ys_value);
         this.ePoint = new wPoint(xe_value,ye_value);
+		
+		Handle = FileDXF.ApplyHandle();
+		
 
         /*
         x = x_value;
@@ -88,6 +99,7 @@ public class EntLine extends EntBase {
         this.sPoint = new wPoint(xs_value,ys_value,zs_value);
         this.ePoint = new wPoint(xe_value,ye_value,ze_value);
 
+		Handle = FileDXF.ApplyHandle();
         /*
         x = x_value;
         y = y_value;
@@ -103,6 +115,8 @@ public class EntLine extends EntBase {
     public EntLine(wPoint2D sPoint,wPoint2D ePoint) {
         this.sPoint = new wPoint(sPoint.x,sPoint.y,0.0);
         this.ePoint = new wPoint(ePoint.x,ePoint.y,0.0);
+		
+		Handle = FileDXF.ApplyHandle();
     }
 
     /**
@@ -113,6 +127,8 @@ public class EntLine extends EntBase {
     public EntLine(wPoint sPoint,wPoint ePoint) {
         this.sPoint = new wPoint(sPoint);
         this.ePoint = new wPoint(ePoint);
+		
+		Handle = FileDXF.ApplyHandle();
     }
 
     /**
@@ -127,6 +143,8 @@ public class EntLine extends EntBase {
         this.xExtrusionDirection = one_line.xExtrusionDirection;
         this.yExtrusionDirection = one_line.yExtrusionDirection;
         this.zExtrusionDirection = one_line.zExtrusionDirection;
+
+		Handle = FileDXF.ApplyHandle();
     }
 
     /**
@@ -195,40 +213,6 @@ public class EntLine extends EntBase {
         System.out.println("End point:  "+"x = "+ePoint.x+"   y = "+ePoint.y+"   z = "+ePoint.z);
     }
 
-    /**
-     * GetMapData()
-     * @return Map of elements description of Entity LINE.
-	 * <pre>Output example:
-	 * Map's Size: 10
-	 * key= Entity                     value= LINE
-	 * key= zExtrusionDirection                        value= 1.0
-	 * key= ClassLabel                 value= AcDbEntity
-	 * key= xExtrusionDirection                        value= 0.0
-	 * key= SubClassLabel                      value= AcDbLine
-	 * key= thickness                  value= 0.0
-	 * key= yExtrusionDirection                        value= 0.0
-	 * key= x                  value= 50.2314
-	 * key= y                  value= 30.12546
-	 * key= z                  value= 80.01234567890124</pre>
-     */
-	public List<String []> GetPairData(){
-		List<String []> params=new ArrayList<>();
-
-        params.add(new String[] {"Entity",this.EntityName});
-        params.add(new String[] {"ClassLabel",this.ClassLabel});
-        params.add(new String[] {"SubClassLabel",this.SubClassLabel});
-
-        params.addAll(sPoint.GetPairData());
-        params.addAll(ePoint.GetPairData());
-
-        params.add(new String[] {"thickness",Double.toString(thickness)});
-        params.add(new String[] {"xExtrusionDirection",Double.toString(xExtrusionDirection)});
-        params.add(new String[] {"yExtrusionDirection",Double.toString(yExtrusionDirection)});
-        params.add(new String[] {"zExtrusionDirection",Double.toString(zExtrusionDirection)});
-
-
-        return params;
-    }
 
     /**
      * GetDXFData()
@@ -238,6 +222,8 @@ public class EntLine extends EntBase {
 	 * LINE
 	 * 100
 	 * AcDbEntity
+	 * 5
+	 * BB
 	 * 8
 	 * 0
 	 * 100
@@ -271,6 +257,10 @@ public class EntLine extends EntBase {
         DXF_STR.add("  100");
         DXF_STR.add(this.ClassLabel);
 
+        DXF_STR.add("  5");
+        DXF_STR.add(this.Handle);
+
+		//System.out.println(FileDXF.hex_handle);
         //DXF_STR.add("8");
         //DXF_STR.add(this.layer);
 		DXF_STR.addAll(super.GetDXFData());
