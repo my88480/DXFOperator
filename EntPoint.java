@@ -17,11 +17,6 @@ public class EntPoint extends EntBase{
     public String EntityName = "POINT";
 
     /**
-     * code  5 - Handle.
-     */
-    public String Handle;
-
-    /**
      * code  100 -Class Label.
      */
 	public String ClassLabel = "AcDbEntity";
@@ -64,7 +59,6 @@ public class EntPoint extends EntBase{
      */
 	public EntPoint(){
 		bPoint = new wPoint();
-		Handle = FileDXF.ApplyHandle();
 		/*
 		bPoint.x = 0.0;
 		bPoint.y = 0.0;
@@ -78,7 +72,6 @@ public class EntPoint extends EntBase{
      */
 	public EntPoint(double x_value){
 		bPoint = new wPoint(x_value);
-		Handle = FileDXF.ApplyHandle();
 		/*
 		bPoint.x = x_value;
 		bPoint.y = 0.0;
@@ -93,7 +86,6 @@ public class EntPoint extends EntBase{
      */
 	public EntPoint(double x_value,double y_value){
 		bPoint = new wPoint(x_value,y_value);
-		Handle = FileDXF.ApplyHandle();
 		/*
 		bPoint.x = x_value;
 		bPoint.y = y_value;
@@ -109,7 +101,6 @@ public class EntPoint extends EntBase{
      */
 	public EntPoint(double x_value,double y_value,double z_value){
 		bPoint = new wPoint(x_value,y_value,z_value);
-		Handle = FileDXF.ApplyHandle();
 		/*
 		bPoint.x = x_value;
 		bPoint.y = y_value;
@@ -126,7 +117,6 @@ public class EntPoint extends EntBase{
 
 		this.bPoint.x = onepoint.x;
 		this.bPoint.y = onepoint.y;
-		Handle = FileDXF.ApplyHandle();
 	}
 	
     /**
@@ -137,7 +127,6 @@ public class EntPoint extends EntBase{
 		bPoint = new wPoint();
 
 		this.bPoint = onepoint;
-		Handle = FileDXF.ApplyHandle();
 	}
 	
     /**
@@ -155,7 +144,6 @@ public class EntPoint extends EntBase{
 		this.xExtrusionDirection = onepoint.xExtrusionDirection;
 		this.yExtrusionDirection = onepoint.yExtrusionDirection;
 		this.zExtrusionDirection = onepoint.zExtrusionDirection;
-		Handle = FileDXF.ApplyHandle();
 	}
 	
     /**
@@ -174,6 +162,28 @@ public class EntPoint extends EntBase{
 		System.out.println("x = "+bPoint.x+"   y = "+bPoint.y+"   z = "+bPoint.z);
 	}		
 
+	public List<String []> GetPairData(){
+		List<String []> params=new ArrayList<>();
+
+		params.add(new String[] {"Entity",this.EntityName});
+		params.add(new String[] {"ClassLabel",this.ClassLabel});
+		params.add(new String[] {"SubClassLabel",this.SubClassLabel});
+		
+		params.addAll(bPoint.GetPairData());
+		/*
+		params.put("x",Double.toString(bPoint.x));
+		params.put("y",Double.toString(bPoint.y));
+		params.put("z",Double.toString(bPoint.z));
+		*/
+		params.add(new String[] {"thickness",Double.toString(thickness)});	
+		params.add(new String[] {"xang",Double.toString(xang)});	
+		params.add(new String[] {"xExtrusionDirection",Double.toString(xExtrusionDirection)});	
+		params.add(new String[] {"yExtrusionDirection",Double.toString(yExtrusionDirection)});	
+		params.add(new String[] {"zExtrusionDirection",Double.toString(zExtrusionDirection)});	
+		
+		return params;
+	}	
+	
     /**
      * GetDXFData()
      * @return the dxf data of entity point.
@@ -210,10 +220,6 @@ public class EntPoint extends EntBase{
 		DXF_STR.add(this.EntityName);
 		DXF_STR.add("  100");
 		DXF_STR.add(this.ClassLabel);
-
-        DXF_STR.add("  5");
-        DXF_STR.add(this.Handle);
-		
 		//DXF_STR.add("8");
 		//DXF_STR.add(this.layer);
 		DXF_STR.addAll(super.GetDXFData());

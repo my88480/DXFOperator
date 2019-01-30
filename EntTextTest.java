@@ -31,10 +31,10 @@ public class EntTextTest{
 	
 	public static void  main(String[] args)  throws Exception{
 		
-		//EntText text1 = new EntText();
-		//text1.Print2D();
-		//System.out.println("length: " + text1.text.length());
-		//System.out.println("");
+		EntText text1 = new EntText();
+		text1.Print2D();
+		System.out.println("length: " + text1.text.length());
+		System.out.println("");
 		EntText text2 = new EntText(60,0,16,"This is a test for EntText Hight 16.");
 		text2.Print2D();
 		System.out.println("");
